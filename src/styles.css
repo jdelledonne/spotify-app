@@ -1,1 +1,151 @@
-/* You can add global styles to this file, and also import other style files */
+/* ----- General tag settings ----- */
+
+body {
+    padding: 40px;
+    font-size: 14px;
+    font-family: 'Overpass Mono';
+    background-color: #282927;
+    color: #ebf3f7;
+    resize: both; 
+}
+
+html {
+    background-color: #282927;
+}
+
+.list-inline {
+    display: inline;
+    margin-right: 15px;
+    padding: 0px;
+    list-style: none;
+}
+
+.link {
+    text-decoration: none;
+    color: #3babe3;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: #d5d555;
+}
+
+.form-block {
+    background-color: #598f91;
+    padding: 10px;
+}
+
+.page-title {
+    text-align: center; 
+    font-size:40px; 
+    font-family:'Rock Salt';
+}
+
+.center-item {
+    display: inline; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+.center-text {
+    text-align: center; 
+}
+
+/* ----- CSS Grid ----- */
+main {
+    /* Basic settings */
+    max-width: 1200px; 
+    margin: 30px auto; 
+    padding: auto 20px; 
+    width: 100%; 
+    
+    /* CSS Grid setup */
+    display: grid;
+    grid-auto-rows: auto;  /* define auto row size */
+    
+    /* Define our columns */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-gap: 1em;
+}
+
+artistblock {
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    background-color: black; 
+}
+
+/* colors changed with click 
+artistblock:nth-child(odd) {
+    background-color: #55bbe9;
+}
+
+artistblock:nth-child(even) {
+    background-color: #64ab1d;
+}
+*/
+
+/* ----- Navigation Bar Settings ----- */
+
+.navigation {
+    /* Basic settings for a flex box */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    
+    list-style: none;   /* bullet type */
+    margin: 0;
+    background: #64ab1d;
+    
+    padding: 0;
+}
+
+.navigation a {
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: white;
+}
+
+.navigation a:hover {
+    background: #1565c0;
+}
+
+.top-charts {
+    display: flex; 
+    flex-flow: row wrap; 
+    justify-content: center; 
+    list-style: none; 
+}
+
+.top-charts iframe {
+    padding: 10px; 
+}
+
+/* Media query: these styles are applied only if these conditions are met */
+/* for all screen sizes and all screen sizes below 800 px */
+@media all and (max-width: 800px) {
+    .navigation {
+        flex-flow: column wrap;
+        padding: 0;
+    }
+}
+
+/* Specifically about mobile (for screens smaller than 600 px) */
+@media all and (max-width: 600px) {
+    .navigation {
+        flex-flow: column wrap;
+        padding: 0;
+    }
+    
+    .navigation a {
+        text-align: center;
+        padding: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .navigation li:last-of-type a {
+        border-bottom: none;
+    }
+}
