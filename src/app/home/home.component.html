@@ -1,0 +1,38 @@
+<p>home works!</p>
+<p> {{ initTester }}</p>
+
+<!-- Title -->
+<h1 class="page-title">Spotify Helper</h1>
+
+<!-- Navigation Bar -->
+<ul class="navigation">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Artists</a></li>
+    <li><a href="#">Playlists</a></li>
+</ul>
+<br>
+<hr>
+<br>
+
+<!-- Search Area -->
+<h2>Search for artistst to find out more about them.</h2>
+<div>
+    <button (click)="searchArtist()"></button>
+    <p>{{ testString }}</p>
+</div>
+
+
+<!-- Popular spotify playlists -->
+<p> Popular playlists with other users </p>
+
+<ul>
+    <li>
+        <iframe id="usTop" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </li>
+    <li>
+        <iframe id="globalTop" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </li>
+    <li>
+        <iframe id="globalViral" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </li>
+</ul>
