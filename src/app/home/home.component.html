@@ -1,6 +1,3 @@
-<p>home works!</p>
-<p> {{ initTester }}</p>
-
 <!-- Title -->
 <h1 class="page-title">Spotify Helper</h1>
 
@@ -15,12 +12,13 @@
 <br>
 
 <!-- Search Area -->
-<h2>Search for artistst to find out more about them.</h2>
+<h2>Search for artist to find out more about them.</h2>
 <div>
-    <button (click)="searchArtist()"></button>
-    <p>{{ testString }}</p>
+    <label>Enter Artist Name: <input type="text" (input)="onSearchInput($event)" id="search_artist"/></label>
+    <button (click)="searchArtist()">Submit</button>
 </div>
 
+<app-history [artists]="history"></app-history>
 
 <!-- Popular spotify playlists -->
 <p> Popular playlists with other users </p>
