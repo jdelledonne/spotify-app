@@ -1,6 +1,7 @@
 ## 0.3.0 (09-30-2020) 
 ### Features
-  - Switched from AngularJS to Angular 7 framework
+  - Switched from AngularJS to Angular 10 framework
+  - Added routing and hooked up project with Parse database
 
 ## 0.2.0 (09-16-2020)
 ### Features: 
