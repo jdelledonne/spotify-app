@@ -68,11 +68,11 @@ main {
     grid-gap: 1em;
 }
 
-artistblock {
+app-artistblock {
     border-radius: 10px;
     padding: 20px;
     color: white;
-    background-color: black; 
+    background-color: #64ab1d;
 }
 
 /* colors changed with click 
