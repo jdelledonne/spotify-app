@@ -1,12 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import * as Parse from 'parse'; 
+
+Parse.serverURL = 'https://parseapi.back4app.com'; 
+Parse.initialize(
+  'E33O0InrCwBjYDrYgxoWy1oN8LLLnQQgNOEESrnE',
+  'GC5CAPOaC1qTCmWTWsXS5JXlp0uBOgUty8wl9H1D'
+); 
 
 @Injectable({
   providedIn: "root"
 })
 export class SpotifyService {
+  private readonly databaseEndpoint = 'defaultPlaylist'; 
+
   constructor(private http: HttpClient) { }
+
+  public getAllProfiles() {
+    var Stores = Parse.Object.extend(this.databaseEndpoint); 
+    var query = new Parse.Query(Stores); 
+    return query.find(); 
+  }
 
   getQuery(query: string) {
     const url = `https://api.spotify.com/v1/${query}`;

@@ -15,10 +15,20 @@ export class HomeComponent implements OnInit {
   us_top_50; 
   dataUrl = "src/app/data.json"; // ../../data.json?
   artists: any[] = [];  
+  usTop; 
+  globalTop; 
+  globalViral; 
+  app; 
+  values; 
+  idResults; 
+  popPlaylistUrlBase = "https://open.spotify.com/embed/playlist/"; 
+
 
   constructor(public http: HttpClient, private spotifyService: SpotifyService) { }
 
   ngOnInit(): void {
+    console.log("in ngOnInit"); 
+    this.loadPopPlaylists(); 
     /*
     this.data = this.getPopData().subscribe(data => {
       console.log(data); 
@@ -40,6 +50,20 @@ export class HomeComponent implements OnInit {
       this.artists = data; 
       console.log(this.artists); 
     }); 
+  }
+
+  loadPopPlaylists() {
+    this.values = this.spotifyService.getAllProfiles().then((results) => {
+      console.log('results', results); 
+      console.log(results[0]['attributes']['spotifyId']); 
+      this.idResults = results; 
+
+      let i; 
+      for (i = 0; i < this.idResults.length; i ++) {
+        (document.getElementById(this.idResults[i]['attributes']['name']) as HTMLImageElement).src = this.popPlaylistUrlBase + this.idResults[i]['attributes']['spotifyId']; 
+      }
+    }); 
+
   }
 
 
