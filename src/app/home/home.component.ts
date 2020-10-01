@@ -8,9 +8,9 @@ import { SpotifyService } from '../services/spotify.service'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  /* Initialize component variables */
   history = [];
-  testString = 'Hello there'; 
-  initTester = 'Original';
   searchartist = 'Default artist'; 
   data; 
   us_top_50; 
@@ -24,21 +24,15 @@ export class HomeComponent implements OnInit {
   idResults; 
   popPlaylistUrlBase = "https://open.spotify.com/embed/playlist/"; 
 
-
   constructor(public http: HttpClient, private spotifyService: SpotifyService) { }
 
   ngOnInit(): void {
     console.log("in ngOnInit"); 
     this.loadPopPlaylists(); 
-    /*
-    this.data = this.getPopData().subscribe(data => {
-      console.log(data); 
-    }); 
-    */
   }
 
   onSearchArtist() {
-    this.testString = 'HELLOOOO THERE!!!!'; 
+    
   }
 
   getPopData() {
@@ -46,6 +40,7 @@ export class HomeComponent implements OnInit {
     return this.http.get(this.dataUrl); 
   }
 
+  /* Search for an artist */
   searchArtist() {
     this.spotifyService.getArtistByName(this.searchartist).subscribe((data: any) => {
       this.artists = data; 
@@ -55,9 +50,9 @@ export class HomeComponent implements OnInit {
     }); 
   }
 
-
+  /* Pull playlist information from Parse database */
   loadPopPlaylists() {
-    this.values = this.spotifyService.getAllProfiles().then((results) => {
+    this.values = this.spotifyService.getAllPlaylists().then((results) => {
       console.log('results', results); 
       console.log(results[0]['attributes']['spotifyId']); 
       this.idResults = results; 
@@ -69,6 +64,7 @@ export class HomeComponent implements OnInit {
     }); 
   }
 
+  /* Update search query parameter */
   onSearchInput(event: any) {
     this.searchartist = event.target.value;
   }

@@ -17,9 +17,9 @@ export class SpotifyService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllProfiles() {
-    var Stores = Parse.Object.extend(this.databaseEndpoint); 
-    var query = new Parse.Query(Stores); 
+  public getAllPlaylists() {
+    var temp = Parse.Object.extend(this.databaseEndpoint); 
+    var query = new Parse.Query(temp); 
     return query.find(); 
   }
 

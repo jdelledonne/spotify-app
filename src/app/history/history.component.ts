@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
+  /* Inherit artists array from parent */
   @Input() 
   artists = [];
 

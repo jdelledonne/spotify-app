@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ArtistblockComponent implements OnInit {
 
+  /* Inherit artist element from parent */
   @Input()
   artist;
 
@@ -15,6 +16,7 @@ export class ArtistblockComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /* Click event for artist photo */
   onClick() {
     console.log("Photo clicked");
   }
