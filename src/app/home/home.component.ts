@@ -10,7 +10,8 @@ import { SpotifyService } from '../services/spotify.service'
 export class HomeComponent implements OnInit {
   history = [];
   testString = 'Hello there'; 
-  initTester = 'Original'; 
+  initTester = 'Original';
+  searchartist = 'Default artist'; 
   data; 
   us_top_50; 
   dataUrl = "src/app/data.json"; // ../../data.json?
@@ -46,11 +47,14 @@ export class HomeComponent implements OnInit {
   }
 
   searchArtist() {
-    this.spotifyService.getArtistByName('Drake').subscribe((data: any) => {
+    this.spotifyService.getArtistByName(this.searchartist).subscribe((data: any) => {
       this.artists = data; 
-      console.log(this.artists); 
+      console.log(this.artists['artists']['items']['0']); 
+      this.history.push(this.artists['artists']['items']['0']);
+      console.log(this.artists);
     }); 
   }
+
 
   loadPopPlaylists() {
     this.values = this.spotifyService.getAllProfiles().then((results) => {
@@ -63,7 +67,10 @@ export class HomeComponent implements OnInit {
         (document.getElementById(this.idResults[i]['attributes']['name']) as HTMLImageElement).src = this.popPlaylistUrlBase + this.idResults[i]['attributes']['spotifyId']; 
       }
     }); 
+  }
 
+  onSearchInput(event: any) {
+    this.searchartist = event.target.value;
   }
 
 
