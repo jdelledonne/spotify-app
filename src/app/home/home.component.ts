@@ -69,5 +69,4 @@ export class HomeComponent implements OnInit {
     this.searchartist = event.target.value;
   }
 
-
 }

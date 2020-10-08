@@ -1,1 +1,27 @@
-<app-home></app-home>
+<!-- Title -->
+<h1 class="page-title">Spotify Helper</h1>
+
+<!-- Navigation Bar -->
+<ul class="navigation">
+    <!-- We use routerLink here because using href would reload the page every nav click. -->
+    <!-- Use / in fromt of all of these paths to designate an absolute path. Can also use relative paths. -->
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/">Home</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/popularPlaylists">Popular Playlists</a></li>
+</ul>
+<br>
+<hr>
+<br>
+
+<!-- Load chosen component, marks place in document where Angular should load the currently selected route -->
+<router-outlet></router-outlet>
+
+<!-- Footer -->
+<br>
+<hr>
+<br>
+<ul class="list-inline">
+    <li class="list-inline"><a class="link" href="https://github.com/jdelledonne/spotify-app">Project Repository</a></li>
+</ul>
+<p style="color:dimgrey">Developed using Angular 10</p>
+<p style="color:dimgrey">Created by Jack Bailey and Joe Delle Donne for CSE 40693 Modern Web Development</p>
+<br>

@@ -22,7 +22,7 @@ html {
 
 .link {
     text-decoration: none;
-    color: #382db3;
+    color: #1894c5;
 }
 
 .link:hover {
@@ -108,7 +108,11 @@ artistblock:nth-child(even) {
 }
 
 .navigation a:hover {
-    background: #1565c0;
+    background: #1894c5;
+}
+
+.active {
+    background: #40611f;
 }
 
 .top-charts {
