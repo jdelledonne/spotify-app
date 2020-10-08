@@ -13,6 +13,10 @@ html {
     background-color: #282927;
 }
 
+hr {
+    border-color: #ebf3f7;
+}
+
 .list-inline {
     display: inline;
     margin-right: 15px;
@@ -37,8 +41,10 @@ html {
 
 .page-title {
     text-align: center; 
-    font-size:40px; 
-    font-family:'Rock Salt';
+    font-size: 20px; 
+}
+.page-title:hover {
+    background: #64ab1d;
 }
 
 .center-item {
@@ -90,6 +96,7 @@ artistblock:nth-child(even) {
 .navigation {
     /* Basic settings for a flex box */
     display: flex;
+    align-items: center;
     flex-flow: row wrap;
     justify-content: flex-start;
     
@@ -105,10 +112,20 @@ artistblock:nth-child(even) {
     display: block;
     padding: 1em;
     color: white;
+    display: table-cell;
+    margin: 1em;
 }
-
+/*
 .navigation a:hover {
     background: #1894c5;
+}
+*/
+.select-link:hover {
+    background: #1894c5;
+}
+
+.navigation.page-title:hover {
+    background: #64ab1d;
 }
 
 .active {

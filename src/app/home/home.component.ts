@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../services/spotify.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
   idResults; 
   popPlaylistUrlBase = "https://open.spotify.com/embed/playlist/"; 
 
-  constructor(public http: HttpClient, private spotifyService: SpotifyService) { }
+  constructor(public http: HttpClient, private spotifyService: SpotifyService, private router: Router) { }
 
   ngOnInit(): void {
     console.log("in ngOnInit"); 
@@ -67,6 +68,11 @@ export class HomeComponent implements OnInit {
   /* Update search query parameter */
   onSearchInput(event: any) {
     this.searchartist = event.target.value;
+  }
+
+  /* Function that navigates to the popular playslists route */
+  onGotoPlaylists() {
+    this.router.navigate(['/popularPlaylists']);
   }
 
 }
