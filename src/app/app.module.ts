@@ -11,15 +11,9 @@ import { ArtistblockComponent } from './artistblock/artistblock.component';
 import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
 import { PopularPlaylistsComponent } from './popular-playlists/popular-playlists.component';
+import { AuthComponent } from './auth/auth.component';
 
-const appRoutes: Routes = [
-  { path: '',                     // localhost:4200/
-    component: HomeComponent      // loads home component     
-  },
-  { path: 'popularPlaylists',      // localhost:4200/popularPlaylists
-    component: PopularPlaylistsComponent         
-  }
-];
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,14 +21,15 @@ const appRoutes: Routes = [
     ArtistblockComponent,
     HomeComponent,
     HistoryComponent,
-    PopularPlaylistsComponent
+    PopularPlaylistsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     AppRoutingModule, 
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)   // Registers appRoutes as application routes for navigation
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
