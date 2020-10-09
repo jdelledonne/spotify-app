@@ -17,6 +17,39 @@ export class SpotifyService {
 
   constructor(private http: HttpClient) { }
 
+  /* Create a new user */
+  public createUser(email: string, password: string) {
+    const user = new Parse.User()
+    user.set('username', email);
+    user.set('email', email);
+    user.set('password', password);
+
+    user.signUp().then((user: any) => {
+      if (typeof document !== 'undefined') {
+        console.log(`Successful sign up: ${JSON.stringify(user)}`);
+      }
+      console.log('User signed up: ', user);
+    }).catch(error => {
+      if (typeof document !== 'undefined') console.log(`Error while signing up user: ${JSON.stringify(error)}`);
+      console.error('Error while signing up user: ', error);
+    });
+  }
+
+  /* Login a user */
+  public login(email: string, password: string) {
+    Parse.User.logIn(email, password).then((user: any) => {
+      /* Successful login */
+      if (typeof document !== 'undefined') { 
+        console.log(`Successful login: ${JSON.stringify(user)}`);
+      }
+      console.log('Logged in user: ', user);
+    }).catch(error => {
+      /* Error logging in */
+      if (typeof document !== 'undefined') document.write(`Error while logging in user: ${JSON.stringify(error)}`);
+      console.error('Error while logging in user: ', error);
+    });
+  }
+
   public getAllPlaylists() {
     var temp = Parse.Object.extend(this.databaseEndpoint); 
     var query = new Parse.Query(temp); 

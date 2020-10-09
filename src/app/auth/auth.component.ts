@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { SpotifyService } from '../services/spotify.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(public http: HttpClient, private spotifyService: SpotifyService) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +26,16 @@ export class AuthComponent implements OnInit {
   /* User submits the authentication form */
   onSubmit(form: NgForm) {
     console.log(form.value);
+
+    if (this.isLoginMode) {
+      /* We are in login mode, call the login service function */
+      this.spotifyService.login(form.value.email, form.value.password);
+    } else {
+      /* We are in sign up mode, call the createUser service function */
+      this.spotifyService.createUser(form.value.email, form.value.password);
+    }
+    
+    /* Reset the form */
     form.reset();
   }
 
