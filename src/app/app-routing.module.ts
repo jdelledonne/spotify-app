@@ -13,7 +13,8 @@ import { AuthGuard } from './auth/auth.guard';
 const appRoutes: Routes = [
   { 
     path: '',                     // localhost:4200/
-    component: HomeComponent      // loads home component     
+    component: HomeComponent,      // loads home component     
+    canActivate: [AuthGuard] 
   },
   { 
     path: 'popularPlaylists',      // localhost:4200/popularPlaylists

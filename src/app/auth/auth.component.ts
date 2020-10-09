@@ -36,7 +36,9 @@ export class AuthComponent implements OnInit {
     if (this.isLoginMode) {
       /* We are in login mode, call the login service function */
       this.spotifyService.login(form.value.email, form.value.password);
-      this.router.navigate(['/']);
+      console.log("after login...");
+      //this.router.navigate(['/']);
+      console.log("attempted navigation...");
     } else {
       /* We are in sign up mode, call the createUser service function */
       this.spotifyService.createUser(form.value.email, form.value.password);

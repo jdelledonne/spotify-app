@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(public http: HttpClient, private spotifyService: SpotifyService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log("in ngOnInit"); 
+    console.log("in home ngOnInit"); 
   }
 
 }

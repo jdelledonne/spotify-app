@@ -16,6 +16,8 @@ export class AppComponent {
   user = null;
 
   constructor(private router: Router, private spotifyService: SpotifyService) { 
+
+    /* Subscribe to recieve updates about user logins */
     this.spotifyService.userLoggedIn.subscribe(
       (new_user: any) => {
         console.log(new_user);
@@ -24,6 +26,10 @@ export class AppComponent {
         this.isLoggedIn = true;
       }
     )
+
+    /* Navigate automatically to the auth page */
+    this.gotoAuthentication();
+
   }
 
   /* navigate to authentication page */
@@ -36,6 +42,7 @@ export class AppComponent {
     // Parse logout user code goes here
     console.log("logging out ", this.user);
     this.spotifyService.current_user = null;
+    this.spotifyService.history = [];
     this.isLoggedIn = false;
     this.user = null;
     this.gotoAuthentication();

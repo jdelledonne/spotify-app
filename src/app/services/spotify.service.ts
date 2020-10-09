@@ -2,9 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import * as Parse from 'parse'; 
-
-import { Subject } from 'rxjs';
-import { User } from '../auth/user.model';
+import { Router } from '@angular/router';
 
 Parse.serverURL = 'https://parseapi.back4app.com'; 
 Parse.initialize(
@@ -20,8 +18,9 @@ export class SpotifyService {
 
   userLoggedIn = new EventEmitter<any>();
   current_user = null;
+  history = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   /* Create a new user */
   public createUser(email: string, password: string) {
@@ -51,6 +50,7 @@ export class SpotifyService {
       console.log('Logged in user: ', user);
       this.userLoggedIn.emit(user);
       this.current_user = user;
+      this.router.navigate(['/']);
     }).catch(error => {
       /* Error logging in */
       if (typeof document !== 'undefined') document.write(`Error while logging in user: ${JSON.stringify(error)}`);
@@ -62,6 +62,7 @@ export class SpotifyService {
   public logout(email: string, password: string): any {
     // logout a user
     // remember to set this.current_user to null here so that the routes are protected again
+    this.history = [];
   }
 
   public getAllPlaylists() {
@@ -76,7 +77,7 @@ export class SpotifyService {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer BQAdp5wZvo-Q2vrSt56MHGrOsPwdkcBbYZ3RdMu79Jjy4mqSNuv28GDkOuomivOaqD2IWlodmRv7Bzb4u-1xF2Bd1JPfb5Xh2Pco4kMDFasS0C7-maQfx1wO2UybR2tbvE5jG1eCzzPcugOVJASZ6A'
+      'Authorization': 'Bearer BQA-g4nNytupGcrX7tLq8zmOZQw30wI_o-IgmdFvwHKZiImjEkEYYAIHFawercJQSJ_R_S1ZyO6Uf06zNH9Fr2LdTBV0wVLSfYYZJxQZT5x8H8-PB3NX9m49iPKhP3-X6ilV6SEtjSd6UDr5OBWw9Q'
     });
 
     return this.http.get(url, { headers });

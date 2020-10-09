@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SpotifyService } from '../services/spotify.service';
 import { Router } from '@angular/router';
 
@@ -11,25 +11,24 @@ import { Router } from '@angular/router';
 export class SearchArtistComponent implements OnInit {
 
   /* Initialize component variables */
-  history = [];
+  history = this.spotifyService.history;
   searchartist = 'Default artist'; 
-  data; 
-  us_top_50; 
-  dataUrl = "src/app/data.json"; // ../../data.json?
-  artists: any[] = [];  
-  usTop; 
-  globalTop; 
-  globalViral; 
-  app; 
-  values; 
-  idResults; 
+  dataUrl = "src/app/data.json";
   popPlaylistUrlBase = "https://open.spotify.com/embed/playlist/"; 
+  artists = [];  
+
+  /* Initialize dynamic function variables */
+  us_top_50     = null;
+  usTop         = null; 
+  globalTop     = null; 
+  globalViral   = null; 
+  values        = null; 
+  idResults     = null; 
 
   constructor(public http: HttpClient, private spotifyService: SpotifyService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log("in ngOnInit"); 
-    this.loadPopPlaylists(); 
+    console.log("in search artist ngOnInit"); 
   }
 
   onSearchArtist() {
