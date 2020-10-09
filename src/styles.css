@@ -115,17 +115,18 @@ artistblock:nth-child(even) {
     display: table-cell;
     margin: 1em;
 }
-/*
-.navigation a:hover {
-    background: #1894c5;
-}
-*/
+
 .select-link:hover {
     background: #1894c5;
 }
 
 .navigation.page-title:hover {
     background: #64ab1d;
+}
+
+.flex-right {
+    margin-left: auto;
+    padding-right: 2em;
 }
 
 .active {

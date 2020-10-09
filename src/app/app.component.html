@@ -1,20 +1,27 @@
 <!-- Navigation Bar -->
-<ul class="navigation">
+<div class="navigation">
     <!-- We use routerLink here because using href would reload the page every nav click. -->
     <!-- Use / in fromt of all of these paths to designate an absolute path. Can also use relative paths. -->
-    <li>
+    <div>
         <a class="page-title" routerLink="/"><img src="assets/images/spotify-logo.png" width="50" height="50" alt="logo">  Spotify Helper</a>
-    </li>&nbsp;-&nbsp;&nbsp;
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    </div>&nbsp;-&nbsp;&nbsp;
+    <div routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a class="select-link" routerLink="/">Home</a>
-    </li>
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    </div>
+    <div routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a class="select-link" routerLink="/popularPlaylists">Popular Playlists</a> 
-    </li>
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a class="select-link" routerLink="/auth">Authentication</a> 
-    </li>
-</ul>
+    </div>
+    <div routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="select-link" routerLink="/searchArtist">Search for Artists</a> 
+    </div>
+    <div class="flex-right" *ngIf="!isLoggedIn">
+        <button class="btn btn-primary" (click)="gotoAuthentication()" type="button">Login / Sign Up</button>
+    </div>
+    <div class="flex-right" *ngIf="isLoggedIn">
+        <p style="display: inline">- Logged in as {{ username }} - </p>
+        <button class="btn btn-primary" (click)="logout()" type="button">Logout</button>
+    </div>
+</div>
 <br>
 <hr>
 <br>

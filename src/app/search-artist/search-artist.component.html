@@ -1,0 +1,11 @@
+<!-- Search Area -->
+<h2>Search for artist to find out more about them.</h2>
+<div>
+    <label>Enter Artist Name: <input type="text" (input)="onSearchInput($event)" id="search_artist"/></label>
+    <button (click)="searchArtist()">Submit</button>
+</div>
+
+<!-- Search history -->
+<app-history [artists]="history"></app-history>
+
+<button (click)="onGotoPlaylists()">Go to Popular Playlists</button>

@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import * as Parse from 'parse'; 
+
+import { Subject } from 'rxjs';
+import { User } from '../auth/user.model';
 
 Parse.serverURL = 'https://parseapi.back4app.com'; 
 Parse.initialize(
@@ -14,6 +17,9 @@ Parse.initialize(
 })
 export class SpotifyService {
   private readonly databaseEndpoint = 'defaultPlaylist'; 
+
+  userLoggedIn = new EventEmitter<any>();
+  current_user = null;
 
   constructor(private http: HttpClient) { }
 
@@ -36,18 +42,26 @@ export class SpotifyService {
   }
 
   /* Login a user */
-  public login(email: string, password: string) {
+  public login(email: string, password: string): any {
     Parse.User.logIn(email, password).then((user: any) => {
       /* Successful login */
       if (typeof document !== 'undefined') { 
         console.log(`Successful login: ${JSON.stringify(user)}`);
       }
       console.log('Logged in user: ', user);
+      this.userLoggedIn.emit(user);
+      this.current_user = user;
     }).catch(error => {
       /* Error logging in */
       if (typeof document !== 'undefined') document.write(`Error while logging in user: ${JSON.stringify(error)}`);
       console.error('Error while logging in user: ', error);
     });
+  }
+
+  /* logout a user */
+  public logout(email: string, password: string): any {
+    // logout a user
+    // remember to set this.current_user to null here so that the routes are protected again
   }
 
   public getAllPlaylists() {
@@ -62,7 +76,7 @@ export class SpotifyService {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer BQCXQncguPckXImfWQXNhV3ZzGNt9pDlOT5-00MmBFzjtmjLGqLbui_CiQQfyR47clNUQ2Xi6gRAvnuxNG-NLqn4D3G1Mv-7RJ49K4XA0acsPfx8Hs-ghEqOe74Yd1mPwUvpMiScJ9ARzr6dzVW6Lw'
+      'Authorization': 'Bearer BQAdp5wZvo-Q2vrSt56MHGrOsPwdkcBbYZ3RdMu79Jjy4mqSNuv28GDkOuomivOaqD2IWlodmRv7Bzb4u-1xF2Bd1JPfb5Xh2Pco4kMDFasS0C7-maQfx1wO2UybR2tbvE5jG1eCzzPcugOVJASZ6A'
     });
 
     return this.http.get(url, { headers });

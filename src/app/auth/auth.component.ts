@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { SpotifyService } from '../services/spotify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -10,7 +11,12 @@ import { SpotifyService } from '../services/spotify.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(public http: HttpClient, private spotifyService: SpotifyService) { }
+  /* Inherited objects from app component */
+  temp: any;
+  @Input() user: string;
+  @Input() isLoggedIn: boolean;
+
+  constructor(private router: Router, public http: HttpClient, private spotifyService: SpotifyService) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +36,7 @@ export class AuthComponent implements OnInit {
     if (this.isLoginMode) {
       /* We are in login mode, call the login service function */
       this.spotifyService.login(form.value.email, form.value.password);
+      this.router.navigate(['/']);
     } else {
       /* We are in sign up mode, call the createUser service function */
       this.spotifyService.createUser(form.value.email, form.value.password);
