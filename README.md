@@ -16,11 +16,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 This project uses the Spotify Development API.  In order to access this api, a token is needed.  Here is a fresh token: 
 
-BQBezLXxhzzt7hsAFYhycsiNGmEskO2ipr0zSm8Rv6GvDGd9IQPyySWcvVtbvfNstz7iiKcbG3JAUw2zQx_9zfUVrMGHHE3VC2YTbhG0qKS6WTiFf_LcWlpFKBdWAcmbPYAk6ZMKKP_KXN7GIA
+BQDc1gxqNgEahScfFCBFMYeg4tqjh_tyjwyFIC4qImRrvCiuI1Bbyhv666ipBW68FzEl335YxDuGnZnWlPs00AZOuc1xFYcrrmJiHUJBbsh2oqTYzVy2jE1IDhKHPprJkQtzd9-cDp2laTfRugckwg
 
-This token must be added to the spotify.services.ts file.  This file is located in src/app/services folder.  In the spotify.services.ts file, replace the old token on line 32: 
+This token must be added to the spotify.services.ts file.  This file is located in src/app/services folder.  In the spotify.services.ts file, replace the old token on line 80: 
 
-`'Authorization': 'Bearer BQABaj6eq-Z_0jgR7g5qy98SeArRYXvPF_n8UWAUpIT6RWaZUMzmMcu47xn5bUTx6PK2D4WEGneL7_GUIztB0rlombkuZ2eI3Gvyxh5zvG9nLg3bkixX-G1y98sY-aP4_YBffGN-QB5ElXLibQ'`
+`'Authorization': 'Bearer BQA5WdRFwDiQ2zPyblvsiPn9Ie4ngLKCT5Um0-pqBNi-jXqr4e07kFNKAu8NIqWU0648u-TqxJW1MmoeQI6G4gbHSwRSKdYB2HIA2vWQq_FrxwFbkztI-6D60TVxUR41LbMYtiuYU0gz5syHsZjAcQ'`
 
 Do not change the Bearer part, only swap out the token itself.  
 
@@ -28,7 +28,12 @@ If you run into problems with the token or Spotify API, please reach out to eith
 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-Note: might have to run `npm i parse` to run.  
+
+NOTE: might have to run `npm i parse` to run.  
+
+## User Authentication
+
+In order to use the site, users must now be authenticated. You can create a new account by signing up through the authentication page and then logging in with your new account credentials.
 
 ## Running unit tests
 
