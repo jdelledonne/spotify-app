@@ -23,6 +23,7 @@ export class AuthComponent implements OnInit {
 
   /* Initialize component variables */
   isLoginMode = true;
+  createdUser = false;
 
   /* User chooses to switch modes */
   onSwitchMode() {
@@ -42,6 +43,7 @@ export class AuthComponent implements OnInit {
     } else {
       /* We are in sign up mode, call the createUser service function */
       this.spotifyService.createUser(form.value.email, form.value.password);
+      this.createdUser = true;
     }
     
     /* Reset the form */

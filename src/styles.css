@@ -57,6 +57,10 @@ hr {
     text-align: center; 
 }
 
+.signup_alert {
+    background-color: #64ab1d;
+}
+
 /* ----- CSS Grid ----- */
 main {
     /* Basic settings */

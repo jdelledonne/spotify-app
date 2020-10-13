@@ -3,6 +3,7 @@
         <div>
             <h2>Welcome to Spotify Helper!</h2>
             <h3>Please {{ isLoginMode ? 'Login' : 'Sign Up' }} to continue.</h3>
+            <br>
         </div>
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
             <div class="form-group">
@@ -18,5 +19,11 @@
                 <button class="btn btn-primary" (click)="onSwitchMode()" type="button">Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}</button>
             </div>
         </form>
+        <div *ngIf="createdUser">
+            <br>
+            <div class="signup_alert">
+                <h5>Thank you for signing up! Please login to continue.</h5>
+            </div>
+        </div>
     </div>
 </div>
