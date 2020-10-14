@@ -53,7 +53,7 @@ export class SpotifyService {
       this.router.navigate(['/']);
     }).catch(error => {
       /* Error logging in */
-      if (typeof document !== 'undefined') document.write(`Error while logging in user: ${JSON.stringify(error)}`);
+      if (typeof document !== 'undefined') console.log(`Error while logging in user: ${JSON.stringify(error)}`);
       console.error('Error while logging in user: ', error);
     });
   }
