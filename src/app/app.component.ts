@@ -14,6 +14,7 @@ export class AppComponent {
   isLoggedIn = false;
   username = null;
   user = null;
+  isSpotifyAuthenticated = false;
 
   constructor(private router: Router, private spotifyService: SpotifyService) { 
 
@@ -27,8 +28,16 @@ export class AppComponent {
       }
     )
 
+    /* Subscribe to receive updates on whether a token has been received */
+    this.spotifyService.receivedToken.subscribe(
+      () => {
+        this.isSpotifyAuthenticated = true;
+        this.router.navigate(['/']);
+      }
+    )
+
     /* Navigate automatically to the auth page */
-    this.gotoAuthentication();
+    //this.gotoAuthentication();
 
   }
 

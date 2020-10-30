@@ -15,6 +15,6 @@ export class AuthGuard implements CanActivate {
         route: ActivatedRouteSnapshot, 
         router: RouterStateSnapshot
     ): boolean | Promise<boolean> | Observable<boolean> {
-        return this.spotifyService.current_user != null;
+        return this.spotifyService.current_user != null && this.spotifyService.token != null;
     }
 }

@@ -19,6 +19,8 @@ export class SpotifyService {
   userLoggedIn = new EventEmitter<any>();
   current_user = null;
   history = [];
+  receivedToken = new EventEmitter<any>();
+  token = null;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -65,6 +67,12 @@ export class SpotifyService {
     this.history = [];
   }
 
+  public updateToken(t: string) {
+    this.token = t;
+    this.receivedToken.emit();
+    console.log("Spotify Service: token updated: " + this.token);
+  }
+
   public getAllPlaylists() {
     var temp = Parse.Object.extend(this.databaseEndpoint); 
     var query = new Parse.Query(temp); 
@@ -77,7 +85,7 @@ export class SpotifyService {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer BQA5WdRFwDiQ2zPyblvsiPn9Ie4ngLKCT5Um0-pqBNi-jXqr4e07kFNKAu8NIqWU0648u-TqxJW1MmoeQI6G4gbHSwRSKdYB2HIA2vWQq_FrxwFbkztI-6D60TVxUR41LbMYtiuYU0gz5syHsZjAcQ'
+      'Authorization': 'Bearer ' + this.token
     });
 
     return this.http.get(url, { headers });

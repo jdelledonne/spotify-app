@@ -3,7 +3,7 @@
 body {
     padding: 40px;
     font-size: 14px;
-    font-family: 'Overpass Mono';
+    font-family: 'Montserrat';
     background-color: #282927;
     color: #ebf3f7;
     resize: both; 
@@ -44,7 +44,7 @@ hr {
     font-size: 20px; 
 }
 .page-title:hover {
-    background: #64ab1d;
+    background: #1db954;
 }
 
 .center-item {
@@ -58,7 +58,14 @@ hr {
 }
 
 .signup_alert {
-    background-color: #64ab1d;
+    background-color: #1db954;
+}
+
+.welcome-block {
+    background-color: #1db954;
+    padding: 3em;
+    border-radius: 25px;
+    display: inline-block;
 }
 
 /* ----- CSS Grid ----- */
@@ -82,7 +89,7 @@ app-artistblock {
     border-radius: 10px;
     padding: 20px;
     color: white;
-    background-color: #64ab1d;
+    background-color: #1db954;
 }
 
 /* colors changed with click 
@@ -91,7 +98,7 @@ artistblock:nth-child(odd) {
 }
 
 artistblock:nth-child(even) {
-    background-color: #64ab1d;
+    background-color: #1db954
 }
 */
 
@@ -106,7 +113,7 @@ artistblock:nth-child(even) {
     
     list-style: none;   /* bullet type */
     margin: 0;
-    background: #64ab1d;
+    background: #1db954;
     
     padding: 0;
 }
@@ -125,7 +132,7 @@ artistblock:nth-child(even) {
 }
 
 .navigation.page-title:hover {
-    background: #64ab1d;
+    background: #1db954;
 }
 
 .flex-right {
