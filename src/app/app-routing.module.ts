@@ -8,7 +8,7 @@ import { HistoryComponent } from './history/history.component';
 import { SearchArtistComponent } from './search-artist/search-artist.component';
 import { PopularPlaylistsComponent } from './popular-playlists/popular-playlists.component';
 import { AuthComponent } from './auth/auth.component';
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard, LoginGuard } from './auth/auth.guard';
 
 const appRoutes: Routes = [
   { 
@@ -28,7 +28,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'auth',
-    component: AuthComponent
+    component: AuthComponent,
+    canActivate: [LoginGuard]
   }
 ];
 

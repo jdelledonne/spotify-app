@@ -12,19 +12,20 @@ import {Observable} from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public http: HttpClient, private spotifyService: SpotifyService, private router: Router) { }
+  constructor(public http: HttpClient, public spotifyService: SpotifyService, private router: Router) { }
 
   token: string;
 
   ngOnInit(): void {
     console.log("in home ngOnInit"); 
+    console.log(this.spotifyService.isSpotifyAuthenticated);
     this.token = window.location.hash.split("=")[1].split("&")[0]
     console.log("token: " + this.token);
     this.spotifyService.updateToken(this.token);
   }
 
   spotifyLogin() {
-      window.location.href="https://accounts.spotify.com/authorize?client_id=45ac1879f9d14dafb67829763149c11e&redirect_uri=http://localhost:4200/&scope=user-read-private%20user-read-email&response_type=token&state=123";
+    this.spotifyService.linkSpotify();
   }
 
   gotoAuthentication() {

@@ -11,27 +11,23 @@ export class AppComponent {
 
   /* Initialize variables */
   title = 'Spotify-Helper';
-  isLoggedIn = false;
-  username = null;
-  user = null;
-  isSpotifyAuthenticated = false;
 
-  constructor(private router: Router, private spotifyService: SpotifyService) { 
+  constructor(private router: Router, public spotifyService: SpotifyService) { 
 
     /* Subscribe to recieve updates about user logins */
     this.spotifyService.userLoggedIn.subscribe(
       (new_user: any) => {
         console.log(new_user);
-        this.user = new_user;
-        this.username = new_user.get('username');
-        this.isLoggedIn = true;
+        this.spotifyService.user = new_user;
+        this.spotifyService.username = new_user.get('username');
+        this.spotifyService.isLoggedIn = true;
       }
     )
 
     /* Subscribe to receive updates on whether a token has been received */
     this.spotifyService.receivedToken.subscribe(
       () => {
-        this.isSpotifyAuthenticated = true;
+        this.spotifyService.isSpotifyAuthenticated = true;
         this.router.navigate(['/']);
       }
     )
@@ -39,6 +35,10 @@ export class AppComponent {
     /* Navigate automatically to the auth page */
     //this.gotoAuthentication();
 
+  }
+
+  spotifyLogin() {
+    this.spotifyService.linkSpotify();
   }
 
   /* navigate to authentication page */
@@ -49,11 +49,11 @@ export class AppComponent {
   /* logout current user */
   logout() {
     // Parse logout user code goes here
-    console.log("logging out ", this.user);
+    console.log("logging out ", this.spotifyService.user);
     this.spotifyService.current_user = null;
     this.spotifyService.history = [];
-    this.isLoggedIn = false;
-    this.user = null;
+    this.spotifyService.isLoggedIn = false;
+    this.spotifyService.user = null;
     this.gotoAuthentication();
   }
 

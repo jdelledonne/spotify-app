@@ -16,6 +16,11 @@ Parse.initialize(
 export class SpotifyService {
   private readonly databaseEndpoint = 'defaultPlaylist'; 
 
+  isLoggedIn = false;
+  username = null;
+  user = null;
+  isSpotifyAuthenticated = false;
+
   userLoggedIn = new EventEmitter<any>();
   current_user = null;
   history = [];
@@ -65,6 +70,11 @@ export class SpotifyService {
     // logout a user
     // remember to set this.current_user to null here so that the routes are protected again
     this.history = [];
+  }
+
+  /* Allow a user to login to spotify account */
+  public linkSpotify() {
+    window.location.href="https://accounts.spotify.com/authorize?client_id=45ac1879f9d14dafb67829763149c11e&redirect_uri=http://localhost:4200/&scope=user-read-private%20user-read-email&response_type=token&state=123";
   }
 
   public updateToken(t: string) {

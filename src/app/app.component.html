@@ -14,14 +14,23 @@
     <div routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a class="select-link" routerLink="/searchArtist">Search for Artists</a> 
     </div>
-    <div class="flex-right" *ngIf="isSpotifyAuthenticated">
-        <a>(Spotify Authenticated)</a>
-    </div>
-    <div class="flex-right" *ngIf="!isLoggedIn">
+    <div class="flex-right" *ngIf="!this.spotifyService.isLoggedIn">
+        <div style="display: inline" class="flex-right" *ngIf="!this.spotifyService.isSpotifyAuthenticated">
+            <button class="btn btn-primary" (click)="spotifyLogin()" type="button">Link to Spotify</button>
+        </div>
+        <div style="display: inline" class="flex-right" *ngIf="this.spotifyService.isSpotifyAuthenticated">
+            <button class="btn btn-secondary" type="button">Spotify Linked</button>
+        </div>
         <button class="btn btn-primary" (click)="gotoAuthentication()" type="button">Login / Sign Up</button>
     </div>
-    <div class="flex-right" *ngIf="isLoggedIn">
-        <p style="display: inline">- Logged in as {{ username }} - </p>
+    <div class="flex-right" *ngIf="this.spotifyService.isLoggedIn">
+        <div style="display: inline" class="flex-right" *ngIf="!this.spotifyService.isSpotifyAuthenticated">
+            <button class="btn btn-primary" (click)="spotifyLogin()" type="button">Link to Spotify</button>
+        </div>
+        <div style="display: inline" class="flex-right" *ngIf="this.spotifyService.isSpotifyAuthenticated">
+            <button class="btn btn-secondary" type="button">Spotify Linked</button>
+        </div>
+        <p style="display: inline">- Logged in as {{ username }} -&nbsp;&nbsp;</p>
         <button class="btn btn-primary" (click)="logout()" type="button">Logout</button>
     </div>
 </div>
