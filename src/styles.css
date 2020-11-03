@@ -118,6 +118,15 @@ artistblock:nth-child(even) {
     padding: 0;
 }
 
+.nav-boot {
+    background: #1db954;
+}
+
+.nav-boot a {
+    text-decoration: none;
+    color: #ebf3f7;
+}
+
 .navigation a {
     text-decoration: none;
     display: block;
@@ -125,6 +134,16 @@ artistblock:nth-child(even) {
     color: white;
     display: table-cell;
     margin: 1em;
+}
+
+.nav-route {
+    text-align: center;
+    margin: auto;
+}
+
+.nav-dropdown {
+    background: #1db954;
+    color: #ebf3f7;
 }
 
 .select-link:hover {

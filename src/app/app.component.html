@@ -1,7 +1,6 @@
 <!-- Navigation Bar -->
+<!--
 <div class="navigation">
-    <!-- We use routerLink here because using href would reload the page every nav click. -->
-    <!-- Use / in fromt of all of these paths to designate an absolute path. Can also use relative paths. -->
     <div>
         <a class="page-title" routerLink="/"><img src="assets/images/spotify-logo.png" width="50" height="50" alt="logo">  Spotify Helper</a>
     </div>&nbsp;-&nbsp;&nbsp;
@@ -34,6 +33,92 @@
         <button class="btn btn-primary" (click)="logout()" type="button">Logout</button>
     </div>
 </div>
+-->
+
+<nav class="navbar navbar-expand-lg nav-boot">
+
+    <div>
+        <a class="page-title navbar-brand" routerLink="/"><img src="assets/images/spotify-logo.png" width="50"
+                height="50" alt="logo"> Spotify Helper</a>
+    </div>
+
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto navigation">
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                class="select-link nav-route">
+                <div class="nav-route">
+                    <a routerLink="/">Home</a>
+                </div>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                class="select-link nav-route">
+                <div class="nav-route">
+                    <a routerLink="/popularPlaylists">Popular Playlists</a>
+                </div>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                class="select-link nav-route">
+                <div class="nav-route">
+                    <a routerLink="/searchArtist">Search Artists</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown nav-route">
+                <div class="nav-route">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu nav-dropdown" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </li>
+
+
+        </ul>
+        <div class="my-2 my-lg-0">
+            <div *ngIf="!this.spotifyService.isLoggedIn">
+                <div style="display: inline" *ngIf="!this.spotifyService.isSpotifyAuthenticated">
+                    <button class="btn btn-primary" (click)="spotifyLogin()" type="button">Link to Spotify</button>
+                    &nbsp;&nbsp;
+                </div>
+                <div style="display: inline" *ngIf="this.spotifyService.isSpotifyAuthenticated">
+                    <button class="btn btn-secondary" type="button">Spotify Linked</button>
+                    &nbsp;&nbsp;
+                </div>
+                <button class="btn btn-primary" (click)="gotoAuthentication()" type="button">Login / Sign Up</button>
+            </div>
+            <div *ngIf="this.spotifyService.isLoggedIn">
+                <div style="display: inline" *ngIf="!this.spotifyService.isSpotifyAuthenticated">
+                    <button class="btn btn-primary" (click)="spotifyLogin()" type="button">Link to Spotify</button>
+                    &nbsp;&nbsp;
+                </div>
+                <div style="display: inline" *ngIf="this.spotifyService.isSpotifyAuthenticated">
+                    <button class="btn btn-secondary" type="button">Spotify Linked</button>
+                    &nbsp;&nbsp;
+                </div>
+                <p style="display: inline">- Logged in as {{ this.spotifyService.username }} -&nbsp;&nbsp;</p>
+                <button class="btn btn-primary" (click)="logout()" type="button">Logout</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
 <br>
 <hr>
 <br>
