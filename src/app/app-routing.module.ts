@@ -9,6 +9,7 @@ import { SearchArtistComponent } from './search-artist/search-artist.component';
 import { PopularPlaylistsComponent } from './popular-playlists/popular-playlists.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard, LoginGuard } from './auth/auth.guard';
+import { PlaylistBuilderComponent } from './playlist-builder/playlist-builder.component';
 
 const appRoutes: Routes = [
   { 
@@ -30,6 +31,11 @@ const appRoutes: Routes = [
     path: 'auth',
     component: AuthComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path: 'playlistBuilder',    // localhost:4200/playlistBuilder
+    component: PlaylistBuilderComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

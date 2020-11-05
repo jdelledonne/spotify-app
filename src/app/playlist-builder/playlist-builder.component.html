@@ -1,0 +1,34 @@
+<h2>Playlist Builder</h2>>
+<div>
+    <label>Enter Song Name: <input type="text" (input)="onSearchInput($event)"></label>
+    <button (click)="searchSong()">Submit</button>
+
+</div>
+
+<div>
+    <h6>Recent Search</h6>
+    <iframe src="https://open.spotify.com/embed/track/5ihS6UUlyQAfmp48eSkxuQ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <iframe id="recentSearch" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
+
+<br/>
+<hr/>
+<br/>
+
+<div>
+    <h6>Current Playlist</h6>
+</div>
+
+<div>
+    
+</div>
+<!--
+<div>
+    <label>Enter Song Name: <input type="text" (input)="onSearchInput($event)" id="search_artist"/></label>
+    <button (click)="searchArtist()">Submit</button>
+</div>
+
+<app-history [artists]="history"></app-history>
+
+<button (click)="onGotoPlaylists()">Go to Popular Playlists</button>
+-->

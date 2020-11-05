@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import * as Parse from 'parse'; 
 import { Router } from '@angular/router';
+declare var require: any; 
+var SpotifyWebApi = require('spotify-web-api-node');
 
 Parse.serverURL = 'https://parseapi.back4app.com'; 
 Parse.initialize(
@@ -26,6 +28,12 @@ export class SpotifyService {
   history = [];
   receivedToken = new EventEmitter<any>();
   token = null;
+
+  spotifyApi = new SpotifyWebApi({
+    clientId: '45ac1879f9d14dafb67829763149c11e',
+    clientSecret: 'db68de0d2e6c48a4b2ee32732e083253',
+    redirectUri: 'http://localhost:4200/'
+  });
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -70,17 +78,22 @@ export class SpotifyService {
     // logout a user
     // remember to set this.current_user to null here so that the routes are protected again
     this.history = [];
-  }
+  } 
 
   /* Allow a user to login to spotify account */
   public linkSpotify() {
-    window.location.href="https://accounts.spotify.com/authorize?client_id=45ac1879f9d14dafb67829763149c11e&redirect_uri=http://localhost:4200/&scope=user-read-private%20user-read-email&response_type=token&state=123";
+    window.location.href="https://accounts.spotify.com/authorize?client_id=45ac1879f9d14dafb67829763149c11e&redirect_uri=http://localhost:4200/&scope=user-read-private%20user-read-email%20playlist-modify-public%20playlist-modify-private&response_type=token&state=123&user-library-modify";
   }
 
   public updateToken(t: string) {
     this.token = t;
     this.receivedToken.emit();
     console.log("Spotify Service: token updated: " + this.token);
+  }
+
+  // include spotify web api node
+  public getSpotifyNode() {
+    this.spotifyApi.setAccessToken(this.token); 
   }
 
   public getAllPlaylists() {
