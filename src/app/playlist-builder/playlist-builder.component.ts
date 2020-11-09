@@ -2,6 +2,8 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { element } from 'protractor';
 import { SpotifyService } from '../services/spotify.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-playlist-builder',
@@ -26,6 +28,14 @@ export class PlaylistBuilderComponent implements OnInit {
   nextVal = 0; 
   songId = null;
   songName = null; 
+  playlistName = "My Playlist";
+  playlistDescription = "My Description"; 
+  inputTypeItems: any[] = [
+    { id: 1, name: 'Search by Song Name '},
+    { id: 2, name: 'Search by Artist Name '}
+  ];
+  selected: number = 1; 
+  currInputType = 1; 
 
 
 
@@ -33,11 +43,25 @@ export class PlaylistBuilderComponent implements OnInit {
 
   ngOnInit(): void {
     //this.createBlankPlaylist(); 
+    //(document.getElementById("playlistName") as HTMLImageElement).innerHTML = this.playlistName; 
+
   }
 
 
   searchSong() {
+    var searchval; 
+    if (this.currInputType == 1) {
+      searchval = this.searchsongval; 
+    } else {
+      searchval = 'artist:' + this.searchsongval; 
+    }
+
+    console.log('this.currInputType: ', this.currInputType, ' searchval: ', searchval); 
+    
     this.spotifyService.spotifyApi.searchTracks(this.searchsongval).then((data) => {
+        var inputType = (document.getElementById("inputType") as HTMLImageElement);
+        console.log("inputType val ", inputType);  
+        
 
         (document.getElementById("recentSearch") as HTMLImageElement).src = 'https://open.spotify.com/embed/track/' + data.body.tracks.items[0].id; 
         console.log('name? ', data.body.tracks.items[0]); 
@@ -75,6 +99,14 @@ export class PlaylistBuilderComponent implements OnInit {
     });
   }
 
+  selectOption(id: number) {
+      console.log('next two outputs from selected'); 
+      console.log(id); 
+      console.log(this.selected); 
+      this.currInputType=id; 
+  }
+  
+
   getArtistTopSong(recommendations) {
     console.log('recommendations.seeds[0].id ', recommendations.seeds[0].id); 
     //this.spotifyService.spotifyApi.getArtistTopTracks(recommendations.seeds[0].id, 'US').then(function(data) {
@@ -106,9 +138,20 @@ export class PlaylistBuilderComponent implements OnInit {
     console.log('this.searchsongval ', this.searchsongval); 
   }
 
+  onPlaylistNameInput(event: any) {
+    this.playlistName = event.target.value; 
+    console.log('this.playlistName ', this.playlistName); 
+    //(document.getElementById("playlistName") as HTMLImageElement).innerHTML = this.playlistName; 
+  }
+
+  onPlaylistDescriptionInput(event: any) {
+    this.playlistDescription = event.target.value; 
+    console.log('this.playlistDescription ', this.playlistDescription); 
+  }
+
   createBlankPlaylist() {
     // Create a private playlist
-    this.spotifyService.spotifyApi.createPlaylist('My playlist', { 'description': 'My description', 'public': true }).then((data) => {
+    this.spotifyService.spotifyApi.createPlaylist(this.playlistName, { 'description': this.playlistDescription, 'public': true }).then((data) => {
       console.log('Created playlist!', data.body);
 
       // set playlist id 
@@ -130,7 +173,7 @@ export class PlaylistBuilderComponent implements OnInit {
   }
 
   createPlaylist() {
-    this.spotifyService.spotifyApi.createPlaylist('My playlist', { 'description': 'My description', 'public': true }).then((info) => {
+    this.spotifyService.spotifyApi.createPlaylist(this.playlistName, { 'description': this.playlistDescription, 'public': true }).then((info) => {
       console.log('Created Playlist!', info.body); 
 
       this.playlistId = info.body.id; 

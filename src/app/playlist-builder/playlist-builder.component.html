@@ -5,11 +5,21 @@
     <button (click)="nextSong()">Next</button>
     <button (click)="addSongToPlaylist()">Add</button>
     <button (click)="createPlaylist()">Create Playlist</button>
+    <!--<label></label>-->
+    <label>Enter Playlist Name: <input type="text" (input)="onPlaylistNameInput($event)"></label>
+    <label>Enter Playlist Description: <input type="text" (input)="onPlaylistDescriptionInput($event)"></label>
+    <div>
+        <select (change)="selectOption($event.target.value)"
+        [(ngModel)]="selected">
+            <option [value]="item.id" *ngFor="let item of inputTypeItems"> {{item.name}}</option>
+        </select>
+    </div>
+
 </div>
 
 <div>
     <h6>Recent Search</h6>
-    <iframe src="https://open.spotify.com/embed/track/5ihS6UUlyQAfmp48eSkxuQ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <iframe id="tester" src="https://open.spotify.com/embed/track/5ihS6UUlyQAfmp48eSkxuQ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <iframe id="recentSearch" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
 
