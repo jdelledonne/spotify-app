@@ -1,11 +1,11 @@
-<h2>Playlist Builder</h2>
+<h1>Playlist Builder</h1>
+<!--
 <div>
     <label>Enter Song Name: <input type="text" (input)="onSearchInput($event)"></label>
     <button (click)="searchSong()">Submit</button>
     <button (click)="nextSong()">Next</button>
     <button (click)="addSongToPlaylist()">Add</button>
     <button (click)="createPlaylist()">Create Playlist</button>
-    <!--<label></label>-->
     <label>Enter Playlist Name: <input type="text" (input)="onPlaylistNameInput($event)"></label>
     <label>Enter Playlist Description: <input type="text" (input)="onPlaylistDescriptionInput($event)"></label>
     <div>
@@ -16,20 +16,41 @@
     </div>
 
 </div>
+-->
+<div class="search-form">
+    <h3>SEARCH</h3>
+    <div class="searchType">
+        <select (change)="selectOption($event.target.value)"
+        [(ngModel)]="selected">
+            <option [value]="item.id" *ngFor="let item of inputTypeItems"> {{item.name}}</option>
+        </select>
+    </div>
+    <label>Search: <input type="text" (input)="onSearchInput($event)"></label>
+    <div>
+        <button class="search-button" (click)="searchSong()">Submit</button>
+    </div>
+    <div>
+        <button class="search-button" (click)="nextSong()">Next</button>
+    </div>
+    <div>
+        <button class="search-button" (click)="addSongToPlaylist()">Add</button>
+    </div>
+</div>
 
-<div>
+<div class="recent-search">
     <h6>Recent Search</h6>
-    <iframe id="tester" src="https://open.spotify.com/embed/track/5ihS6UUlyQAfmp48eSkxuQ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <iframe id="recentSearch" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
 
+<div class="space"></div>
+
+<!--<app-artistblock class="blocks" *ngFor="let artist of artists" [artist]="artist"></app-artistblock>-->
 <br />
 <hr />
 <br />
 
-<!--<app-artistblock class="blocks" *ngFor="let artist of artists" [artist]="artist"></app-artistblock>-->
-
-<div>
+<div class="currPlaylist">
+    <h3>Current Playlist</h3>
     <li *ngFor="let song of playlistSongNames">
         {{song}}
     </li>
@@ -40,8 +61,13 @@
 <br />
 
 <div>
-    <h6>New Playlist!</h6>
-    <iframe id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <h3>New Playlist!</h3>
+    <label>Enter Playlist Name: <input type="text" (input)="onPlaylistNameInput($event)"></label>
+    <label>Enter Playlist Description: <input type="text" (input)="onPlaylistDescriptionInput($event)"></label>
+    <button (click)="createPlaylist()">Create Playlist</button>
+    <div>
+        <iframe id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
 </div>
 
 <div>

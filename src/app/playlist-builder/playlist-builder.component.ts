@@ -3,12 +3,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { element } from 'protractor';
 import { SpotifyService } from '../services/spotify.service';
 import { CommonModule } from '@angular/common';
+import { ViewEncapsulation } from '@angular/core';
+
 
 
 @Component({
   selector: 'app-playlist-builder',
   templateUrl: './playlist-builder.component.html',
-  styleUrls: ['./playlist-builder.component.css']
+  styleUrls: ['./playlist-builder.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PlaylistBuilderComponent implements OnInit {
 
