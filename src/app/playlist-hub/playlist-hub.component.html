@@ -63,7 +63,7 @@
     <div class="text-block">
         <iframe [src]="this.playlist_embed_link_safe" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         <br>
-        <button class="btn btn-warning btn-lg" (click)="publishPlaylist()" type="button">Publish to Spotify Helper</button>
+        <button *ngIf="!playlist_published" class="btn btn-warning btn-lg" (click)="publishPlaylist()" type="button">Publish to Spotify Helper</button>
     </div>
 </div>
 
@@ -75,8 +75,8 @@
         <h2>Published Playlists</h2>
     </div>
     <main>
-        <div *ngFor="let playlist_id of this.spotifyService.HubPlaylists">
-            <app-published-playlist class="blocks" [playlist_id]="playlist_id"></app-published-playlist>
+        <div *ngFor="let playlist of this.spotifyService.HubPlaylists">
+            <app-published-playlist class="blocks" [playlist]="playlist"></app-published-playlist>
         </div>
     </main>
     

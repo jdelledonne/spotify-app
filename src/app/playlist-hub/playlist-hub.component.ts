@@ -21,6 +21,7 @@ export class PlaylistHubComponent implements OnInit {
   playlist_element = null;
   playlist_tracks = [];
   playlist_created = false;
+  playlist_published = false;
 
   song_name = null;
   song_search_results = null;
@@ -127,6 +128,7 @@ export class PlaylistHubComponent implements OnInit {
 
   publishPlaylist() {
     this.spotifyService.publishHubPlaylist(this.playlist.id);
+    this.playlist_published = true;
   }
 
 }

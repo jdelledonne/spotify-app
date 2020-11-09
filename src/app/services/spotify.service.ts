@@ -91,6 +91,8 @@ export class SpotifyService {
     const newHubPlaylist = new hubPlaylist();
 
     newHubPlaylist.set('playlist_id', playlist_id);
+    newHubPlaylist.set('username', this.username);
+    newHubPlaylist.set('likes', 0);
 
     newHubPlaylist.save().then(
       (result) => {
@@ -113,10 +115,25 @@ export class SpotifyService {
       console.log('hubPlaylist found', results);
       for (let i = 0; i < results.length; i++) {
         console.log(i + ": " + results[i].get("playlist_id"));
-        this.HubPlaylists.push(results[i].get("playlist_id"));
+        this.HubPlaylists.push(results[i]);
       }
     }, (error) => {
       console.error('Error while fetching hubPlaylist', error);
+    });
+  }
+
+  /* Update a Hub Playlist in the database */
+  public updateHubPlaylist(object_id: string, likes: number, dislikes: number) {
+    const hubPlaylist = Parse.Object.extend('hubPlaylist');
+    const query = new Parse.Query(hubPlaylist);
+    query.get(object_id).then((object) => {
+      object.set('likes', likes);
+      object.set('dislikes', dislikes);
+      object.save().then((response) => {
+        console.log('Updated hubPlaylist', response);
+      }, (error) => {
+        console.error('Error while updating hubPlaylist', error);
+      }); 
     });
   }
 
