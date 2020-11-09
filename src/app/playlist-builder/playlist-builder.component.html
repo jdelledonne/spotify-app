@@ -1,8 +1,10 @@
-<h2>Playlist Builder</h2>>
+<h2>Playlist Builder</h2>
 <div>
     <label>Enter Song Name: <input type="text" (input)="onSearchInput($event)"></label>
     <button (click)="searchSong()">Submit</button>
-
+    <button (click)="nextSong()">Next</button>
+    <button (click)="addSongToPlaylist()">Add</button>
+    <button (click)="createPlaylist()">Create Playlist</button>
 </div>
 
 <div>
@@ -11,12 +13,25 @@
     <iframe id="recentSearch" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
 
-<br/>
-<hr/>
-<br/>
+<br />
+<hr />
+<br />
+
+<!--<app-artistblock class="blocks" *ngFor="let artist of artists" [artist]="artist"></app-artistblock>-->
 
 <div>
-    <h6>Current Playlist</h6>
+    <li *ngFor="let song of playlistSongNames">
+        {{song}}
+    </li>
+</div>
+
+<br />
+<hr />
+<br />
+
+<div>
+    <h6>New Playlist!</h6>
+    <iframe id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
 
 <div>
