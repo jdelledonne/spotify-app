@@ -6,6 +6,7 @@ import { ArtistblockComponent } from './artistblock/artistblock.component';
 import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
 import { SearchArtistComponent } from './search-artist/search-artist.component';
+import { PlaylistHubComponent } from './playlist-hub/playlist-hub.component';
 import { PopularPlaylistsComponent } from './popular-playlists/popular-playlists.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard, LoginGuard } from './auth/auth.guard';
@@ -24,6 +25,11 @@ const appRoutes: Routes = [
   { 
     path: 'searchArtist',      // localhost:4200/searchArtist
     component: SearchArtistComponent,
+    canActivate: [AuthGuard]        
+  },
+  { 
+    path: 'playlistHub',      // localhost:4200/playlistHub
+    component: PlaylistHubComponent,
     canActivate: [AuthGuard]        
   },
   {

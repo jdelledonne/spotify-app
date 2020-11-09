@@ -15,6 +15,9 @@ import { AuthComponent } from './auth/auth.component';
 
 import { FormsModule } from '@angular/forms';
 import { SearchArtistComponent } from './search-artist/search-artist.component';
+import { PlaylistHubComponent } from './playlist-hub/playlist-hub.component';
+import { TrackComponent } from './track/track.component';
+import { PublishedPlaylistComponent } from './published-playlist/published-playlist.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { SearchArtistComponent } from './search-artist/search-artist.component';
     HistoryComponent,
     PopularPlaylistsComponent,
     AuthComponent,
-    SearchArtistComponent
+    SearchArtistComponent,
+    PlaylistHubComponent,
+    TrackComponent,
+    PublishedPlaylistComponent
   ],
   imports: [
     BrowserModule,

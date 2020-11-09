@@ -1,0 +1,83 @@
+<br>
+
+<!-- User enters the name of the playlist they wish to create -->
+<div *ngIf="!creating_playlist && !playlist_created">
+    <label><input class="form-control" placeholder="Enter playlist name" type="text"
+            (input)="onPlaylistNameInput($event)" id="playlist_name" /></label>
+    &nbsp;
+    <button class="btn btn-warning" (click)="initializePlaylist()" type="button">Create Playlist</button>
+</div>
+
+<!-- User searches for and selects songs to put into playlist -->
+<div class="container" *ngIf="creating_playlist">
+    <div class="text-block">
+        <h3 style="text-align:center">
+            Creating Playlist: {{ this.playlist_name }}
+        </h3>
+    </div>
+    <br>
+    <div class="row">
+
+        <!-- SEARCH AND RESULTS -->
+        <div class="col-sm">
+            <div>
+                <div class="text-block">
+                    <h3>Search Songs</h3>
+                    <label><input class="form-control" placeholder="Enter song name" type="text"
+                            (input)="onSongNameInput($event)" id="song_name" /></label>
+                    &nbsp;
+                    <button class="btn btn-warning" (click)="searchSong()" type="button">Search</button>
+                </div>
+                <div>
+                    <app-track *ngFor="let track of song_search_results" [track_id]="returnId(track.id)" [mode]="add">
+                    </app-track>
+                </div>
+            </div>
+        </div>
+        <div class="verticalLine"></div>
+
+        <!-- ADDED SONGS -->
+        <div class="col-sm">
+            <div class="text-block">
+                <h3>Added Songs</h3>
+            </div>
+            <div>
+                <app-track *ngFor="let track_id of playlist_tracks" [track_id]="returnId(track_id)" [mode]="remove">
+                </app-track>
+            </div>
+        </div>
+        <div class="verticalLine"></div>
+
+    </div>
+
+    <br>
+    <div class="text-block" style="text-align:left">
+        <textarea class="form-control" id="playlist_desc" rows="3" (input)="onPlaylistDescInput($event)" placeholder="Enter a playlist description..."></textarea>
+        <br>
+        <button class="btn btn-warning btn-lg" (click)="createPlaylist()" type="button">Generate Playlist</button>
+    </div>
+
+</div>
+
+<div *ngIf="playlist_created">
+    <div class="text-block">
+        <iframe [src]="this.playlist_embed_link_safe" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        <br>
+        <button class="btn btn-warning btn-lg" (click)="publishPlaylist()" type="button">Publish to Spotify Helper</button>
+    </div>
+</div>
+
+<hr>
+
+<!-- User can see other public playlists -->
+<div>
+    <div class="text-block">
+        <h2>Published Playlists</h2>
+    </div>
+    <main>
+        <div *ngFor="let playlist_id of this.spotifyService.HubPlaylists">
+            <app-published-playlist class="blocks" [playlist_id]="playlist_id"></app-published-playlist>
+        </div>
+    </main>
+    
+</div>

@@ -72,6 +72,14 @@
                 </div>
             </li>
 
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                class="select-link nav-route">
+                <div class="nav-route">
+                    <a routerLink="/playlistHub">Playlist Hub</a>
+                </div>
+            </li>
+
+            <!--
             <li class="nav-item dropdown nav-route">
                 <div class="nav-route">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -86,6 +94,7 @@
                     </div>
                 </div>
             </li>
+        -->
 
 
         </ul>
@@ -110,8 +119,7 @@
                     <button class="btn btn-secondary" type="button">Spotify Linked</button>
                     &nbsp;&nbsp;
                 </div>
-                <p style="display: inline">- Logged in as {{ this.spotifyService.username }} -&nbsp;&nbsp;</p>
-                <button class="btn btn-primary" (click)="logout()" type="button">Logout</button>
+                <button class="btn btn-danger" (click)="logout()" type="button">Logout {{ this.spotifyService.username }}</button>
             </div>
         </div>
     </div>

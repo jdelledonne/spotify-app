@@ -22,6 +22,17 @@ export class HomeComponent implements OnInit {
     this.token = window.location.hash.split("=")[1].split("&")[0]
     console.log("token: " + this.token);
     this.spotifyService.updateToken(this.token);
+    this.spotifyService.getSpotifyNode(); 
+
+    //test 
+    this.spotifyService.spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE').then(
+      function(data) {
+        console.log('Artist albums: ', data.body); 
+      },
+      function(err) {
+        console.error(err); 
+      }
+    );
   }
 
   spotifyLogin() {

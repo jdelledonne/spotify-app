@@ -68,6 +68,18 @@ hr {
     display: inline-block;
 }
 
+.text-block {
+    background-color: #1db954;
+    padding: 2em;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.verticalLine {
+    border-left:  solid #ebf3f7;
+    padding: 5px;
+}
+
 /* ----- CSS Grid ----- */
 main {
     /* Basic settings */

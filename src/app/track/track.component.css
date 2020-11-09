@@ -1,0 +1,20 @@
+.track {
+    background-color: #1db954;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.btn-add {
+    height: 50px;
+}
+
+.center {
+    display: inline;
+    margin: 0px;
+}
+

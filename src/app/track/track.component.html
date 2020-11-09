@@ -1,0 +1,14 @@
+<div class="track">
+    <div class="center">
+        <iframe [src]="this.safe_url" width="300" height="75" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+    &nbsp;
+    &nbsp;
+    <div class="center" *ngIf="mode == 'add'">
+        <button class="btn btn-warning btn-add" (click)="addSong()" type="button">Add</button>
+    </div>
+    <div class="center" *ngIf="mode == 'remove'">
+        <button class="btn btn-danger btn-add" (click)="removeSong()" type="button">Remove</button>
+    </div>
+</div>
+
