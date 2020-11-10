@@ -1,8 +1,8 @@
 <div class="welcome-block" style="text-align: center;">
     <iframe [src]="this.safe_url" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <h6>Created by {{ this.username }}</h6>
-    <button class="btn btn-primary btn-lg" (click)="upvote()" type="button"><img src="assets/images/like.jpg" width="20" height="20" alt="like"> {{ this.likes }}</button>
+    <button class="btn btn-light btn-lg" (click)="upvote()" type="button"><img src="assets/images/like.jpg" width="20" height="20" alt="like"> {{ this.likes }}</button>
     &nbsp;
-    <button class="btn btn-danger btn-lg" (click)="downvote()" type="button"><img src="assets/images/dislike.jpg" width="20" height="20" alt="dislike"> {{ this.dislikes }}</button>
+    <button class="btn btn-light btn-lg" (click)="downvote()" type="button"><img src="assets/images/dislike.jpg" width="20" height="20" alt="dislike"> {{ this.dislikes }}</button>
 </div>
 

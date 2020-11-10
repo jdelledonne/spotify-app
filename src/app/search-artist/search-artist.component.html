@@ -1,11 +1,13 @@
 <!-- Search Area -->
-<h2>Search for artist to find out more about them.</h2>
-<div>
-    <label>Enter Artist Name: <input type="text" (input)="onSearchInput($event)" id="search_artist"/></label>
-    <button (click)="searchArtist()">Submit</button>
+<div style="width:70%; text-align:center; margin:auto; display:block;" class="welcome-block">
+    <h2>Search for artist to find out more about them.</h2>
+    <div>
+        <label><input class="form-control" type="text" (input)="onSearchInput($event)" id="search_artist" placeholder="Enter an artist's name"/></label>
+        &nbsp;
+        <button class="btn btn-warning" (click)="searchArtist()">Search</button>
+    </div>
 </div>
+
 
 <!-- Search history -->
 <app-history [artists]="history"></app-history>
-
-<button (click)="onGotoPlaylists()">Go to Popular Playlists</button>

@@ -12,34 +12,46 @@ import {Observable} from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public http: HttpClient, public spotifyService: SpotifyService, private router: Router) { }
+  constructor(public http: HttpClient, public spotifyService: SpotifyService, private router: Router) { 
+    console.log(this.temp);
+    this.isSpotifyAuthenticated = this.spotifyService.isSpotifyAuthenticated;
+  }
 
   token: string;
+  isSpotifyAuthenticated = false;
+  temp = true;
 
   ngOnInit(): void {
     console.log("in home ngOnInit"); 
     console.log(this.spotifyService.isSpotifyAuthenticated);
-    this.token = window.location.hash.split("=")[1].split("&")[0]
-    console.log("token: " + this.token);
-    this.spotifyService.updateToken(this.token);
-    this.spotifyService.getSpotifyNode(); 
-
-    //test 
-    this.spotifyService.spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE').then(
-      function(data) {
-        console.log('Artist albums: ', data.body); 
-      },
-      function(err) {
-        console.error(err); 
-      }
-    );
+    console.log(this.temp);
+    if (window.location.hash) {
+      this.token = window.location.hash.split("=")[1].split("&")[0]
+      console.log("token: " + this.token);
+      this.spotifyService.updateToken(this.token);
+      this.spotifyService.getSpotifyNode(); 
+    }
+    //this.router.navigate(['/']);
+    
   }
 
   spotifyLogin() {
     this.spotifyService.linkSpotify();
+    this.router.navigate(['/']);
   }
 
   gotoAuthentication() {
     this.router.navigate(['/auth']);
+  }
+
+  /* logout current user */
+  logout() {
+    // Parse logout user code goes here
+    console.log("logging out ", this.spotifyService.user);
+    this.spotifyService.current_user = null;
+    this.spotifyService.history = [];
+    this.spotifyService.isLoggedIn = false;
+    this.spotifyService.user = null;
+    this.gotoAuthentication();
   }
 }

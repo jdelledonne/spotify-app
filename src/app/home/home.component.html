@@ -5,11 +5,22 @@
         <p>The Spotify Helper is an application designed to allow users to easily interact with the music on Spotify.</p>
     
         <hr>
-        <p>To continue using the site, please login to your Spotify Helper account.</p>
-        <button class="btn btn-primary" (click)="gotoAuthentication()" type="button">Login  / Sign Up</button>
+        <div *ngIf="!this.spotifyService.isLoggedIn">
+            <p>To continue using the site, please login to your Spotify Helper account.</p>
+            <button class="btn btn-primary" (click)="gotoAuthentication()" type="button">Login  / Sign Up</button>
+        </div>
+        <div *ngIf="this.spotifyService.isLoggedIn">
+            <button class="btn btn-danger" (click)="logout()" type="button">Logout {{ this.spotifyService.username }}</button>
+        </div>
     
         <hr>
-        <p>To use certain portions of the site that access Spotify's music databases, you need to link to your Spotify account.</p>
-        <button class="btn btn-primary" (click)="spotifyLogin()" type="button">Login to Spotify</button>
+        <div *ngIf="!isSpotifyAuthenticated">
+            <p>To use certain portions of the site that access Spotify's music databases, you need to link to your Spotify account.</p>
+            <button class="btn btn-primary" (click)="spotifyLogin()" type="button">Link to Spotify</button>
+        </div>
+        
+        <div *ngIf="isSpotifyAuthenticated">
+            <button class="btn btn-secondary" type="button">Spotify Linked</button>
+        </div>
     </div>
 </div>

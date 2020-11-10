@@ -22,6 +22,7 @@ export class SpotifyService {
   username = null;
   user = null;
   isSpotifyAuthenticated = false;
+  spotifyAuthenticated = new EventEmitter<any>();
 
   userLoggedIn = new EventEmitter<any>();
   current_user = null;

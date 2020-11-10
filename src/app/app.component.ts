@@ -28,7 +28,7 @@ export class AppComponent {
     this.spotifyService.receivedToken.subscribe(
       () => {
         this.spotifyService.isSpotifyAuthenticated = true;
-        this.router.navigate(['/']);
+        this.router.navigate(['/auth']);
       }
     )
 

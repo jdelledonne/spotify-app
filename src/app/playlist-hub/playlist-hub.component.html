@@ -1,11 +1,12 @@
-<br>
-
 <!-- User enters the name of the playlist they wish to create -->
-<div *ngIf="!creating_playlist && !playlist_created">
-    <label><input class="form-control" placeholder="Enter playlist name" type="text"
+<div *ngIf="!creating_playlist && !playlist_created" class="parent">
+    <div>
+        <h2>Create a Playlist</h2>
+        <label><input class="form-control" placeholder="Enter playlist name" type="text"
             (input)="onPlaylistNameInput($event)" id="playlist_name" /></label>
-    &nbsp;
-    <button class="btn btn-warning" (click)="initializePlaylist()" type="button">Create Playlist</button>
+        &nbsp;
+        <button class="btn btn-warning" (click)="initializePlaylist()" type="button">Create Playlist</button>
+    </div>
 </div>
 
 <!-- User searches for and selects songs to put into playlist -->
@@ -61,9 +62,12 @@
 
 <div *ngIf="playlist_created">
     <div class="text-block">
+        <h2>Here's your playlist!</h2>
         <iframe [src]="this.playlist_embed_link_safe" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         <br>
         <button *ngIf="!playlist_published" class="btn btn-warning btn-lg" (click)="publishPlaylist()" type="button">Publish to Spotify Helper</button>
+        <br>
+        <h6>Publishing your playlist will make it permanently available on SPotify Helper for other users to see.</h6>
     </div>
 </div>
 

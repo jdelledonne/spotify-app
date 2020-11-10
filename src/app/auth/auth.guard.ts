@@ -1,4 +1,4 @@
-import { RouterStateSnapshot, ActivatedRouteSnapshot, CanActivate } from '@angular/router';
+import { RouterStateSnapshot, ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
 
 import { SpotifyService } from '../services/spotify.service';
 
@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
         route: ActivatedRouteSnapshot, 
         router: RouterStateSnapshot
     ): boolean | Promise<boolean> | Observable<boolean> {
-        return this.spotifyService.current_user != null && this.spotifyService.token != null;
+        return ((this.spotifyService.current_user != null) && (this.spotifyService.token != null));
     }
     
 }
