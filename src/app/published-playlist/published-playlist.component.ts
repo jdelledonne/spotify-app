@@ -15,26 +15,26 @@ export class PublishedPlaylistComponent implements OnInit {
   @Input() playlist: any;
 
   /* Initialize playlist databse variables */
-  playlist_embed_url;
-  safe_url;
-  username;
-  likes;
-  dislikes;
+  playlist_embed_url  = null;
+  safe_url            = null;
+  username            = null;
+  likes               = null;
+  dislikes            = null;
 
   /* Initialize comment database variables */
-  comments = [];
-  input_comment_text = null;
-  temp: string;
+  comments            = [];
+  input_comment_text  = null;
 
   /* Initialize like and dislike booleans */
-  liked = false;
-  disliked = false;
+  liked     = false;
+  disliked  = false;
 
   constructor(public http: HttpClient, public spotifyService: SpotifyService, private router: Router, private sanitizer: DomSanitizer) { 
+    /* Load comments associated with this playlist from database */
     this.spotifyService.commentsLoaded.subscribe(
       (playlist_id) => {
         if (playlist_id == this.playlist.id) {
-          console.log("Published playlist: loading...");
+          this.comments = [];
           for (let comment of this.spotifyService.comments) {
             if (comment.get('playlist').id == this.playlist.id) {
               this.comments.push(comment);
@@ -43,6 +43,8 @@ export class PublishedPlaylistComponent implements OnInit {
         }
       }
     );
+
+    /* When a comment is added, refresh comments */
     this.spotifyService.commentCreated.subscribe(
       () => {
         this.comments = [];
@@ -52,7 +54,6 @@ export class PublishedPlaylistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     /* Initialize iframe url */
     console.log("track " + this.playlist.id);
     this.playlist_embed_url = "https://open.spotify.com/embed/playlist/" + this.playlist.get('playlist_id');
@@ -86,12 +87,12 @@ export class PublishedPlaylistComponent implements OnInit {
 
   /* Publish a comment to the playlist */
   createComment() {
-    console.log("(published-playlist) Creating comment: " + this.input_comment_text + "\nUser: " + this.username);
+    this.comments = [];
     this.spotifyService.createComment(this.playlist, this.spotifyService.username, this.input_comment_text);
     (document.getElementById(this.playlist.id) as HTMLTextAreaElement).value = '';
   }
 
-  /* Update comment body */
+  /* Update comment text */
   onCommentInput(event: any) {
     this.input_comment_text = event.target.value;
   }

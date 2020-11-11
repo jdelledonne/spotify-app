@@ -84,6 +84,7 @@ export class SpotifyService {
 
   /* logout a user */
   public logout(email: string, password: string): any {
+    this.comments = null;
     this.history = [];
   } 
 
@@ -151,6 +152,7 @@ export class SpotifyService {
     myNewObject.save().then(
       (result) => {
         console.log('comment created', result);
+        this.comments = null;
         this.commentCreated.emit();
       },
       (error) => {
@@ -163,7 +165,6 @@ export class SpotifyService {
   public loadComments(playlist_id: string) {
     const comment = Parse.Object.extend('comment');
     const query = new Parse.Query(comment);
-    //query.equalTo("playlist", playlist);
     query.find().then((results) => {
       console.log('comment found', results);
       this.comments = results;

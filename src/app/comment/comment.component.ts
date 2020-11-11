@@ -10,18 +10,19 @@ import { Router } from '@angular/router';
 })
 export class CommentComponent implements OnInit {
 
+  /* Inherit comment object from parent */
   @Input() comment: any;
 
-  username = null;
-  text = null;
+  /* Initialize comment variables */
+  username  = null;
+  text      = null;
 
   constructor(public http: HttpClient, public spotifyService: SpotifyService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log("In comment init...");
     /* Initialize username and text */
     this.username = this.comment.get('username');
-    this.text = this.comment.get('text');
+    this.text     = this.comment.get('text');
   }
 
 }

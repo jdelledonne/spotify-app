@@ -11,34 +11,36 @@ import {BrowserModule, DomSanitizer, SafeResourceUrl} from '@angular/platform-br
 })
 export class PlaylistHubComponent implements OnInit {
 
-  /* Initialize variables */
-  creating_playlist = false;
-  playlist = null;
-  playlist_name = "My Playlist";
-  playlist_desc = "Playlist created by Spotify Helper";
+  /* Initialize playlist variables */
+  creating_playlist   = false;
+  playlist            = null;
+  playlist_name       = "My Playlist";
+  playlist_desc       = "Playlist created by Spotify Helper";
   playlist_embed_link = null;
   playlist_embed_link_safe: SafeResourceUrl;
-  playlist_element = null;
-  playlist_tracks = [];
-  playlist_created = false;
-  playlist_published = false;
+  playlist_element    = null;
+  playlist_tracks     = [];
+  playlist_created    = false;
+  playlist_published  = false;
 
-  song_name = null;
+  /* Initialize song variables */
+  song_name           = null;
   song_search_results = null;
-  song_string = null;
-
+  song_string         = null;
   track_url: SafeResourceUrl;
-
-  add = "add";
-  remove = "remove";
+  add                 = "add";
+  remove              = "remove";
 
   constructor(public http: HttpClient, public spotifyService: SpotifyService, private router: Router, private sanitizer: DomSanitizer) { 
+    /* Add song to playlist */
     this.spotifyService.songAdded.subscribe(
       (track_id: string) => {
         console.log("Playlist Hub: pushing " + track_id);
         this.playlist_tracks.push(track_id);
       }
     );
+
+    /* Remove song from playlist */
     this.spotifyService.songRemoved.subscribe(
       (track_id: string) => {
         console.log("Playlist Hub: removing " + track_id);
@@ -51,12 +53,12 @@ export class PlaylistHubComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("In playlist-hub init");
+    /* Load playlists from database */
     this.spotifyService.HubPlaylists = [];
     this.spotifyService.loadAllHubPlaylists();
   }
 
-  /* Initialize playlist */
+  /* Initialize playlist state */
   initializePlaylist() {
     this.creating_playlist = true;
   }
@@ -64,7 +66,6 @@ export class PlaylistHubComponent implements OnInit {
   /* Create playlist with added songs */
   createPlaylist() {
     this.createBlankPlaylist(this.playlist_name, this.playlist_desc);
-    console.log("Playlist created: " + this.playlist_name);
   }
 
   /* Creates a blank public playlist in the user's spotify profile */
@@ -83,22 +84,21 @@ export class PlaylistHubComponent implements OnInit {
     });
   }
 
+  /* Populate the blank playlist with the selected tracks */
   populatePlaylist() {
-    console.log("POPULATING PLAYLIST")
     for (let i = 0; i < this.playlist_tracks.length; i++) {
-      console.log("Added " + this.playlist_tracks[i] + "to the playlist...");
       this.addSongToPlaylist(this.playlist_tracks[i]);
     }
     this.creating_playlist = false;
-    this.playlist_created = true;
+    this.playlist_created  = true;
   }
 
+  /* Helper function for returning spotify IDs to children */
   returnId(id: string) {
-    // console.log("returning " + id);
     return id;
   }
   
-  /* Update search query parameters */
+  /* Update input query parameters */
   onPlaylistNameInput(event: any) {
     this.playlist_name = event.target.value;
   }
@@ -109,6 +109,7 @@ export class PlaylistHubComponent implements OnInit {
     this.playlist_desc = event.target.value;
   }
 
+  /* Searches for a song, stores results */
   searchSong() {
     this.spotifyService.spotifyApi.searchTracks(this.song_name).then((data) => {
       this.song_search_results = data.body.tracks.items.slice(0,7);
@@ -117,6 +118,7 @@ export class PlaylistHubComponent implements OnInit {
     });
   }
 
+  /* Adds a single song to the Spotify playlist */
   addSongToPlaylist(track_id: string) {
     this.song_string = "spotify:track:" + track_id;
     this.spotifyService.spotifyApi.addTracksToPlaylist(this.playlist.id, [this.song_string]).then((data) => {
@@ -126,6 +128,7 @@ export class PlaylistHubComponent implements OnInit {
     });
   }
 
+  /* Publishes the generated playlist to Spotify Helper */
   publishPlaylist() {
     this.spotifyService.publishHubPlaylist(this.playlist.id);
     this.playlist_published = true;

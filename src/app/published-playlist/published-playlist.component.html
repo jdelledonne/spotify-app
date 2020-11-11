@@ -1,20 +1,27 @@
 <div class="welcome-block" style="text-align: center;">
+
+    <!-- Embed Spotify playlist -->
     <iframe [src]="this.safe_url" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <h6>Created by {{ this.username }}</h6>
+
+    <!-- Likes / Dislikes -->
     <button class="btn btn-light btn-lg" (click)="upvote()" type="button"><img src="assets/images/like.jpg" width="20" height="20" alt="like"> {{ this.likes }}</button>
     &nbsp;
     <button class="btn btn-light btn-lg" (click)="downvote()" type="button"><img src="assets/images/dislike.jpg" width="20" height="20" alt="dislike"> {{ this.dislikes }}</button>
     <hr>
 
+    <!-- Comment section -->
     <div *ngFor="let comment of this.comments">
         <app-comment [comment]="comment"></app-comment>
     </div>
 
+    <!-- User comment option -->
     <br>
     <form>
         <textarea class="form-control" id="{{ this.playlist.id }}" rows="3" (input)="onCommentInput($event)" placeholder="Enter a comment about the playlist..."></textarea>
         <br>
         <button class="btn btn-warning" (click)="createComment()" type="submit">Comment</button>
     </form>
+    
 </div>
 

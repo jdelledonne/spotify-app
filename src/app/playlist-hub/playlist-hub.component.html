@@ -19,7 +19,7 @@
     <br>
     <div class="row">
 
-        <!-- SEARCH AND RESULTS -->
+        <!-- Search and results -->
         <div class="col-sm">
             <div>
                 <div class="text-block">
@@ -37,7 +37,7 @@
         </div>
         <div class="verticalLine"></div>
 
-        <!-- ADDED SONGS -->
+        <!-- Added songs -->
         <div class="col-sm">
             <div class="text-block">
                 <h3>Added Songs</h3>
@@ -50,6 +50,7 @@
 
     </div>
 
+    <!-- Playlist description and generate option -->
     <br>
     <div class="text-block" style="text-align:left">
         <textarea class="form-control" id="playlist_desc" rows="3" (input)="onPlaylistDescInput($event)" placeholder="Enter a playlist description..."></textarea>
@@ -59,6 +60,7 @@
 
 </div>
 
+<!-- Display created playlist with option to publish -->
 <div *ngIf="playlist_created">
     <div class="text-block">
         <h2>Here's your playlist!</h2>

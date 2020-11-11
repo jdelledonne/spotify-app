@@ -11,33 +11,32 @@ import {BrowserModule, DomSanitizer, SafeResourceUrl} from '@angular/platform-br
 })
 export class TrackComponent implements OnInit {
 
-  /* Inherit track url from parent */
+  /* Inherit track url and mode (add or remove) from parent */
   @Input() track_id: string;
   @Input() mode: string;
   
+  /* Initialize track variables */
   track_embed_url: string;
   safe_url: SafeResourceUrl;
 
   constructor(public http: HttpClient, public spotifyService: SpotifyService, private router: Router, private sanitizer: DomSanitizer) { 
-
   }
 
   ngOnInit(): void {
-    console.log("in track " + this.track_id + " onInit...");
+    /* Construct safe track url for embedding in DOM */
     this.track_embed_url = "https://open.spotify.com/embed/track/" + this.track_id;
-    console.log(this.track_embed_url);
     this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(this.track_embed_url);
-    console.log(this.mode);
   }
 
+  /* Adds track to the playlist being created */
   addSong() {
     console.log("Track: Adding " + this.track_id)
     this.spotifyService.songAdded.emit(this.track_id);
   }
 
+  /* Removes track from the playlist being created */
   removeSong() {
     console.log("Track:Removing " + this.track_id)
     this.spotifyService.songRemoved.emit(this.track_id);
   }
-
 }
