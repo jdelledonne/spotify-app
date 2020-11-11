@@ -1,0 +1,15 @@
+.comment {
+    background-color: #40611f;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}

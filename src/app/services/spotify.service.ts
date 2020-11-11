@@ -34,6 +34,9 @@ export class SpotifyService {
   songRemoved = new EventEmitter<any>();
 
   HubPlaylists = [];
+  comments = null;
+  commentsLoaded = new EventEmitter<any>();
+  commentCreated = new EventEmitter<any>();
 
   spotifyApi = new SpotifyWebApi({
     clientId: '45ac1879f9d14dafb67829763149c11e',
@@ -81,8 +84,6 @@ export class SpotifyService {
 
   /* logout a user */
   public logout(email: string, password: string): any {
-    // logout a user
-    // remember to set this.current_user to null here so that the routes are protected again
     this.history = [];
   } 
 
@@ -135,6 +136,40 @@ export class SpotifyService {
       }, (error) => {
         console.error('Error while updating hubPlaylist', error);
       }); 
+    });
+  }
+
+  /* Create a new comment on the database */
+  public createComment(playlist: any, username: string, text: string) {
+    const comment = Parse.Object.extend('comment');
+    const myNewObject = new comment();
+
+    myNewObject.set('playlist', playlist);
+    myNewObject.set('username', username);
+    myNewObject.set('text', text);
+
+    myNewObject.save().then(
+      (result) => {
+        console.log('comment created', result);
+        this.commentCreated.emit();
+      },
+      (error) => {
+        console.error('Error while creating comment: ', error);
+      }
+    );
+  }
+
+  /* Load comments from database associated with a playlist */
+  public loadComments(playlist_id: string) {
+    const comment = Parse.Object.extend('comment');
+    const query = new Parse.Query(comment);
+    //query.equalTo("playlist", playlist);
+    query.find().then((results) => {
+      console.log('comment found', results);
+      this.comments = results;
+      this.commentsLoaded.emit(playlist_id);
+    }, (error) => {
+      console.error('Error while fetching comment', error);
     });
   }
 

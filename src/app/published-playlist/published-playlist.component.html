@@ -4,5 +4,17 @@
     <button class="btn btn-light btn-lg" (click)="upvote()" type="button"><img src="assets/images/like.jpg" width="20" height="20" alt="like"> {{ this.likes }}</button>
     &nbsp;
     <button class="btn btn-light btn-lg" (click)="downvote()" type="button"><img src="assets/images/dislike.jpg" width="20" height="20" alt="dislike"> {{ this.dislikes }}</button>
+    <hr>
+
+    <div *ngFor="let comment of this.comments">
+        <app-comment [comment]="comment"></app-comment>
+    </div>
+
+    <br>
+    <form>
+        <textarea class="form-control" id="{{ this.playlist.id }}" rows="3" (input)="onCommentInput($event)" placeholder="Enter a comment about the playlist..."></textarea>
+        <br>
+        <button class="btn btn-warning" (click)="createComment()" type="submit">Comment</button>
+    </form>
 </div>
 

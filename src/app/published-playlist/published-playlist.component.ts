@@ -21,11 +21,34 @@ export class PublishedPlaylistComponent implements OnInit {
   likes;
   dislikes;
 
+  /* Initialize comment database variables */
+  comments = [];
+  input_comment_text = null;
+  temp: string;
+
   /* Initialize like and dislike booleans */
   liked = false;
   disliked = false;
 
   constructor(public http: HttpClient, public spotifyService: SpotifyService, private router: Router, private sanitizer: DomSanitizer) { 
+    this.spotifyService.commentsLoaded.subscribe(
+      (playlist_id) => {
+        if (playlist_id == this.playlist.id) {
+          console.log("Published playlist: loading...");
+          for (let comment of this.spotifyService.comments) {
+            if (comment.get('playlist').id == this.playlist.id) {
+              this.comments.push(comment);
+            }
+          }
+        }
+      }
+    );
+    this.spotifyService.commentCreated.subscribe(
+      () => {
+        this.comments = [];
+        this.spotifyService.loadComments(this.playlist.id);
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -40,8 +63,12 @@ export class PublishedPlaylistComponent implements OnInit {
     this.username = this.playlist.get('username');
     this.likes = this.playlist.get('likes');
     this.dislikes = this.playlist.get('dislikes');
+
+    /* Load comments associated with this playlist */
+    this.spotifyService.loadComments(this.playlist.id);
   }
 
+  /* Handles incrementing of likes and dislikes */
   upvote() {
     if (!this.liked) {
       this.likes = this.likes + 1;
@@ -49,13 +76,24 @@ export class PublishedPlaylistComponent implements OnInit {
       this.spotifyService.updateHubPlaylist(this.playlist.id, this.likes, this.dislikes);
     }
   }
-
   downvote() {
     if (!this.disliked) {
       this.dislikes = this.dislikes + 1;
       this.disliked = true;
       this.spotifyService.updateHubPlaylist(this.playlist.id, this.likes, this.dislikes);
     }
+  }
+
+  /* Publish a comment to the playlist */
+  createComment() {
+    console.log("(published-playlist) Creating comment: " + this.input_comment_text + "\nUser: " + this.username);
+    this.spotifyService.createComment(this.playlist, this.spotifyService.username, this.input_comment_text);
+    (document.getElementById(this.playlist.id) as HTMLTextAreaElement).value = '';
+  }
+
+  /* Update comment body */
+  onCommentInput(event: any) {
+    this.input_comment_text = event.target.value;
   }
 
 }

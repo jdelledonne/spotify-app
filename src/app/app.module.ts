@@ -18,6 +18,7 @@ import { SearchArtistComponent } from './search-artist/search-artist.component';
 import { PlaylistHubComponent } from './playlist-hub/playlist-hub.component';
 import { TrackComponent } from './track/track.component';
 import { PublishedPlaylistComponent } from './published-playlist/published-playlist.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PublishedPlaylistComponent } from './published-playlist/published-playl
     SearchArtistComponent,
     PlaylistHubComponent,
     TrackComponent,
-    PublishedPlaylistComponent
+    PublishedPlaylistComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

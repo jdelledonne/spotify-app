@@ -79,7 +79,7 @@ export class PlaylistHubComponent implements OnInit {
       console.log('Something went wrong!', err);
     })
     .then(() => {
-      this.populatePlaylist()
+      this.populatePlaylist();
     });
   }
 
