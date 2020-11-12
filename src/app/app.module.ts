@@ -19,6 +19,7 @@ import { PlaylistHubComponent } from './playlist-hub/playlist-hub.component';
 import { TrackComponent } from './track/track.component';
 import { PublishedPlaylistComponent } from './published-playlist/published-playlist.component';
 import { CommentComponent } from './comment/comment.component';
+import { PlaylistCreatorComponent } from './playlist-creator/playlist-creator.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CommentComponent } from './comment/comment.component';
     PlaylistHubComponent,
     TrackComponent,
     PublishedPlaylistComponent,
-    CommentComponent
+    CommentComponent,
+    PlaylistCreatorComponent
   ],
   imports: [
     BrowserModule,
