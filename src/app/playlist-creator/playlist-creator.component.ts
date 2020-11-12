@@ -205,7 +205,7 @@ export class PlaylistCreatorComponent implements OnInit {
       //this.playlistLink = 'https://open.spotify.com/embed/playlist/' + this.playlistId; 
       this.playlistLink = "https://open.spotify.com/embed/playlist/" + info.body.id; 
       this.playlistLinkSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistLink); 
-      (document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + info.body.id;  
+      //(document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + info.body.id;  
       //(document.getElementById("currentPlaylist") as HTMLImageElement).src = playlistLinkSafe; 
       return this.playlistId; 
 
