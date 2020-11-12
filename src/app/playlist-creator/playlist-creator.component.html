@@ -67,7 +67,7 @@
     <!--<div *ngIf="display_playlist">
         <iframe [src]="this.playlistLink" id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>-->
-    <iframe id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <iframe [src]="this.playlistLinkSafe" id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
 </div>
 
