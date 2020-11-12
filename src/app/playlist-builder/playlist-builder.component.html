@@ -65,9 +65,11 @@
     <label>Enter Playlist Name: <input type="text" (input)="onPlaylistNameInput($event)"></label>
     <label>Enter Playlist Description: <input type="text" (input)="onPlaylistDescriptionInput($event)"></label>
     <button (click)="createPlaylist()">Create Playlist</button>
-    <div *ngIf="display_playlist">
-        <iframe [src]="this.playlistLinkSafe" id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    </div>
+    <!--<div *ngIf="display_playlist">
+        <iframe [src]="this.playlistLink" id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>-->
+    <iframe id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
 </div>
 
 <div>

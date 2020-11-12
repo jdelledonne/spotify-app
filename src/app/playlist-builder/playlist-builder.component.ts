@@ -128,7 +128,8 @@ export class PlaylistBuilderComponent implements OnInit {
     console.log('in nextSong'); 
     this.nextVal = this.nextVal + 1; 
     if (this.nextVal >= 20) {
-      console.log('no more songs!'); 
+      console.log('no songs that way!'); 
+      this.nextVal = 20; 
     } else {
       (document.getElementById("recentSearch") as HTMLImageElement).src = 'https://open.spotify.com/embed/track/' + this.allDataCurrSong.tracks.items[this.nextVal].id; 
       this.searchSongId = this.allDataCurrSong.tracks.items[this.nextVal].id; 
@@ -204,7 +205,7 @@ export class PlaylistBuilderComponent implements OnInit {
       //this.playlistLink = 'https://open.spotify.com/embed/playlist/' + this.playlistId; 
       this.playlistLink = "https://open.spotify.com/embed/playlist/" + info.body.id; 
       this.playlistLinkSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistLink); 
-      //(document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + info.body.id;  
+      (document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + info.body.id;  
       //(document.getElementById("currentPlaylist") as HTMLImageElement).src = playlistLinkSafe; 
       return this.playlistId; 
 
