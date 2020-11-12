@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {BrowserModule, DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-artistblock',
@@ -8,17 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ArtistblockComponent implements OnInit {
 
   /* Inherit artist element from parent */
-  @Input()
-  artist;
+  @Input() artist;
 
-  constructor() { }
+  safe_url = null;
+
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-  }
-
-  /* Click event for artist photo */
-  onClick() {
-    console.log("Photo clicked");
+    this.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl("https://open.spotify.com/embed/artist/" + this.artist.id);
   }
 
 }

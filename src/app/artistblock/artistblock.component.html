@@ -1,7 +1,10 @@
 <!--defines each individual element of the search history-->
 <h2 class="center-text">{{ artist.name }}</h2>
 <div class="center-text">
-    <img src="{{artist.images[0].url}}" height="300" width="300" (click)="onClick()">
+    <img src="{{artist.images[0].url}}" height="300" width="300">
+</div>
+<div class="center-text">
+    <iframe [src]="this.safe_url" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
 <p class="center-text">Followers: {{ artist.followers.total }}</p>
 <p class="center-text">Genres: {{ artist.genres }}</p>
