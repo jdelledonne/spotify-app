@@ -4,6 +4,7 @@ import { element } from 'protractor';
 import { SpotifyService } from '../services/spotify.service';
 import { CommonModule } from '@angular/common';
 import { ViewEncapsulation } from '@angular/core';
+import {BrowserModule, DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 
 
@@ -40,10 +41,12 @@ export class PlaylistBuilderComponent implements OnInit {
   selected: number = 1; 
   currInputType = 1; 
   playlistLink = null; 
+  playlistLinkSafe = null; 
+  display_playlist = true; 
 
 
 
-  constructor(private spotifyService: SpotifyService) { }
+  constructor(private spotifyService: SpotifyService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     //this.createBlankPlaylist(); 
@@ -199,7 +202,10 @@ export class PlaylistBuilderComponent implements OnInit {
       }
       */
       //this.playlistLink = 'https://open.spotify.com/embed/playlist/' + this.playlistId; 
-      (document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + info.body.id;  
+      this.playlistLink = "https://open.spotify.com/embed/playlist/" + info.body.id; 
+      this.playlistLinkSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistLink); 
+      //(document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + info.body.id;  
+      //(document.getElementById("currentPlaylist") as HTMLImageElement).src = playlistLinkSafe; 
       return this.playlistId; 
 
     }, function(err) {
