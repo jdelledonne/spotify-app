@@ -49,8 +49,6 @@ export class PlaylistCreatorComponent implements OnInit {
   constructor(private spotifyService: SpotifyService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    //this.createBlankPlaylist(); 
-    //(document.getElementById("playlistName") as HTMLImageElement).innerHTML = this.playlistName; 
 
   }
 
@@ -80,7 +78,6 @@ export class PlaylistCreatorComponent implements OnInit {
         console.log('allDataCurrSong ', this.allDataCurrSong); 
 
         console.log('this.searchSongId ', this.searchSongId); 
-        //this.addSongToPlaylist(this.searchSongId, this.searchSongName); 
 
         this.nextVal = 0; 
 
@@ -116,7 +113,6 @@ export class PlaylistCreatorComponent implements OnInit {
 
   getArtistTopSong(recommendations) {
     console.log('recommendations.seeds[0].id ', recommendations.seeds[0].id); 
-    //this.spotifyService.spotifyApi.getArtistTopTracks(recommendations.seeds[0].id, 'US').then(function(data) {
     this.spotifyService.spotifyApi.getArtistTopTracks('0oSGxfWSnnOXhD2fKuz2Gy', 'US').then(function(data) {
       console.log('top track! ', data.body);
     }, function(err) {
@@ -149,35 +145,11 @@ export class PlaylistCreatorComponent implements OnInit {
   onPlaylistNameInput(event: any) {
     this.playlistName = event.target.value; 
     console.log('this.playlistName ', this.playlistName); 
-    //(document.getElementById("playlistName") as HTMLImageElement).innerHTML = this.playlistName; 
   }
 
   onPlaylistDescriptionInput(event: any) {
     this.playlistDescription = event.target.value; 
     console.log('this.playlistDescription ', this.playlistDescription); 
-  }
-
-  createBlankPlaylist() {
-    // Create a private playlist
-    this.spotifyService.spotifyApi.createPlaylist(this.playlistName, { 'description': this.playlistDescription, 'public': true }).then((data) => {
-      console.log('Created playlist!', data.body);
-
-      // set playlist id 
-      this.playlistId = data.body.id; 
-      console.log('this.playlistId ', this.playlistId); 
-
-
-      // test add a default song to playlist 
-      //this.addSongToPlaylist(); 
-      //this.addSongToPlaylist('4iV5W9uYEdYUVa79Axb7Rh'); 
-
-      (document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + data.body.id; 
-
-      console.log('this.playlistId ', this.playlistId); 
-
-    }, function(err) {
-      console.log('Something went wrong!', err);
-    });
   }
 
   createPlaylist() {
@@ -189,44 +161,16 @@ export class PlaylistCreatorComponent implements OnInit {
       console.log('this.playlistId ', this.playlistId); 
 
       console.log('this.playlistSongs ', this.playlistSongs); 
-      /*
-      let i; 
-      var songString; 
-      for(i = 0; i < this.playlistSongs.length; i ++) {
-        //this.addSongToPlaylist(this.playlistSongs[i]); 
-        songString = 'spotify:track:' + this.playlistSongs[i]; 
-        this.spotifyService.spotifyApi.addTracksToPlaylist(this.playlistId, [songString]).then((data) => {
-          console.log('Added track to playlist!'); 
-        }, function (err) {
-          console.log('Something went wrong!', err); 
-        }); 
-      }
-      */
-      //this.playlistLink = 'https://open.spotify.com/embed/playlist/' + this.playlistId; 
+
       this.playlistLink = "https://open.spotify.com/embed/playlist/" + info.body.id; 
       this.playlistLinkSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistLink); 
-      //(document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + info.body.id;  
-      //(document.getElementById("currentPlaylist") as HTMLImageElement).src = playlistLinkSafe; 
+      (document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + info.body.id;  
       return this.playlistId; 
 
     }, function(err) {
       console.log('Something went wrong!', err); 
     }).then((playlistId) => {
-      /*
-      let i; 
-      var songString; 
-      for(i = 0; i < this.playlistSongs.length; i ++) {
-        //this.addSongToPlaylist(this.playlistSongs[i]); 
-        /*
-        songString = 'spotify:track:' + this.playlistSongs[i]; 
-        this.spotifyService.spotifyApi.addTracksToPlaylist(this.playlistId, [songString]).then((data) => {
-          console.log('Added track to playlist!'); 
-        }, function (err) {
-          console.log('Something went wrong!', err); 
-        }); 
-        
-       this.addSongToCreatedPlaylist(this.playlistSongs[i]); 
-      } */
+
       this.fillPlaylist(); 
 
     }).catch(function(error){
@@ -255,45 +199,17 @@ export class PlaylistCreatorComponent implements OnInit {
 
 
 
-  testReload() {
-    (document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + '5ihS6UUlyQAfmp48eSkxuQ';  
-
-    var songString = 'spotify:track:' + '5ihS6UUlyQAfmp48eSkxuQ'; 
-    this.spotifyService.spotifyApi.addTracksToPlaylist('036B1xuAvJF7dxzD3cVh8h', [songString]).then((data) => {
-      console.log('Added track to playlist!'); 
-    }, function (err) {
-      console.log('Something went wrong!', err); 
-    }); 
-
-    // get the element
-    this.el = (document.getElementById("currentPlaylist") as HTMLImageElement); 
-    this.el.contentDocument.location.reload(true); 
-  }
-
   addSongToPlaylist() {
     console.log('in addSongToPlaylist'); 
-    // Add tracks to a playlist
-    /*
-    var songString = 'spotify:track:' + songId; 
-    console.log('songString ', songString); 
-    console.log('this.playlistId ', this.playlistId); 
-    this.spotifyService.spotifyApi.addTracksToPlaylist(this.playlistId, [songString]).then((data) => {
-      console.log('Added tracks to playlist!');
-    }, function(err) {
-      console.log('Something went wrong!', err);
-    });
-    */
+
     this.playlistSongs.push(this.searchSongId); 
 
     var displayString = this.searchSongName + ' by ' + this.searchSongArtist; 
     this.playlistSongNames.push(displayString); 
-    //console.log('this.playlistSongs ', this.playlistSongs); 
-    //console.log('this.playlistSongNames ', this.playlistSongNames); 
+
     console.log('this.searchSongId ', this.searchSongId);
     console.log('this.searchSongName ', this.searchSongName); 
 
-    //(document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + '1oJXIJr4SIoSq31KLdfuDE'; 
-    //(document.getElementById("currentPlaylist") as HTMLImageElement).src = 'https://open.spotify.com/embed/playlist/' + this.playlistId; 
 
   }
 

@@ -1,21 +1,5 @@
 <h1>Playlist Creator</h1>
-<!--
-<div>
-    <label>Enter Song Name: <input type="text" (input)="onSearchInput($event)"></label>
-    <button (click)="searchSong()">Submit</button>
-    <button (click)="nextSong()">Next</button>
-    <button (click)="addSongToPlaylist()">Add</button>
-    <button (click)="createPlaylist()">Create Playlist</button>
-    <label>Enter Playlist Name: <input type="text" (input)="onPlaylistNameInput($event)"></label>
-    <label>Enter Playlist Description: <input type="text" (input)="onPlaylistDescriptionInput($event)"></label>
-    <div>
-        <select (change)="selectOption($event.target.value)"
-        [(ngModel)]="selected">
-            <option [value]="item.id" *ngFor="let item of inputTypeItems"> {{item.name}}</option>
-        </select>
-    </div>
-</div>
--->
+
 <div class="search-form">
     <h3>SEARCH</h3>
     <div class="searchType">
@@ -38,12 +22,11 @@
 
 <div class="recent-search">
     <h6>Recent Search</h6>
-    <iframe id="recentSearch" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <iframe id="recentSearch" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>\
 </div>
 
 <div class="space"></div>
 
-<!--<app-artistblock class="blocks" *ngFor="let artist of artists" [artist]="artist"></app-artistblock>-->
 <br />
 <hr />
 <br />
@@ -64,21 +47,11 @@
     <label class="blue-block">Enter Playlist Name: <input type="text" (input)="onPlaylistNameInput($event)"></label>
     <label class="blue-block">Enter Playlist Description: <input type="text" (input)="onPlaylistDescriptionInput($event)"></label>
     <button class="blue-block" (click)="createPlaylist()">Create Playlist</button>
-    <!--<div *ngIf="display_playlist">
-        <iframe [src]="this.playlistLink" id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    </div>-->
-    <iframe [src]="this.playlistLinkSafe" id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-
+    <div>
+        <iframe id="currentPlaylist" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
 </div>
 
 <div>
     
 </div>
-<!--
-<div>
-    <label>Enter Song Name: <input type="text" (input)="onSearchInput($event)" id="search_artist"/></label>
-    <button (click)="searchArtist()">Submit</button>
-</div>
-<app-history [artists]="history"></app-history>
-<button (click)="onGotoPlaylists()">Go to Popular Playlists</button>
--->
