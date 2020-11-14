@@ -23,3 +23,5 @@ Playlist Hub: Can create a new playlist with the option to publish it to a "play
 Playlist Creator: Search Spotify by either Song or Artist. Can iterate through search results, with the option to add it to a playlist.  Songs that were added to the playlist are all displayed, and there is an option to create the playlist at the end. 
 
 Note that in both Playlist features, the created playlists will actually be added to the linked Spotify account (there might be a slight delay in the creation of the playlist). 
+
+If there are any issues with setup / use for grading purposes, please reach out to jdelledo@nd.edu or jbailey7@nd.edu

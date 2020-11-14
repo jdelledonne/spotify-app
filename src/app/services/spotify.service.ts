@@ -18,26 +18,29 @@ Parse.initialize(
 export class SpotifyService {
   private readonly databaseEndpoint = 'defaultPlaylist'; 
 
+  /* Initailize user authentication variables */
   isLoggedIn = false;
   username = null;
   user = null;
   isSpotifyAuthenticated = false;
   spotifyAuthenticated = new EventEmitter<any>();
-
   userLoggedIn = new EventEmitter<any>();
   current_user = null;
   history = [];
+
+  /* Initialize Spotify token variables */
   receivedToken = new EventEmitter<any>();
   token = null;
 
+  /* Initailize song and comment variables */
   songAdded = new EventEmitter<any>();
   songRemoved = new EventEmitter<any>();
-
   HubPlaylists = [];
   comments = null;
   commentsLoaded = new EventEmitter<any>();
   commentCreated = new EventEmitter<any>();
 
+  /* Initialize NodeJS spotify API module with Spotify project credentials */
   spotifyApi = new SpotifyWebApi({
     clientId: '45ac1879f9d14dafb67829763149c11e',
     clientSecret: 'db68de0d2e6c48a4b2ee32732e083253',
@@ -179,23 +182,26 @@ export class SpotifyService {
     window.location.href="https://accounts.spotify.com/authorize?client_id=45ac1879f9d14dafb67829763149c11e&redirect_uri=http://localhost:4200/&scope=user-read-private%20user-read-email%20playlist-modify-public%20playlist-modify-private&response_type=token&state=123&user-library-modify";
   }
 
+  /* Update the Spotify access token */
   public updateToken(t: string) {
     this.token = t;
     this.receivedToken.emit();
     console.log("Spotify Service: token updated: " + this.token);
   }
 
-  // include spotify web api node
+  /* Register token with NodeJS module */
   public getSpotifyNode() {
     this.spotifyApi.setAccessToken(this.token); 
   }
 
+  /* Retrieve popular playlists from Parse */
   public getAllPlaylists() {
     var temp = Parse.Object.extend(this.databaseEndpoint); 
     var query = new Parse.Query(temp); 
     return query.find(); 
   }
 
+  /* The following functions are all Spotify API helper functions */
   getQuery(query: string) {
     const url = `https://api.spotify.com/v1/${query}`;
 
@@ -224,7 +230,6 @@ export class SpotifyService {
     return this.getQuery(`artists/${id}`);
   }
 
-  // this is me
   getArtistByName(name: string) {
       return this.getQuery(`search?q=$${name}&type=artist`);
   }

@@ -31,8 +31,6 @@ export class HomeComponent implements OnInit {
       this.spotifyService.updateToken(this.token);
       this.spotifyService.getSpotifyNode(); 
     }
-    //this.router.navigate(['/']);
-    
   }
 
   spotifyLogin() {
@@ -46,7 +44,6 @@ export class HomeComponent implements OnInit {
 
   /* logout current user */
   logout() {
-    // Parse logout user code goes here
     console.log("logging out ", this.spotifyService.user);
     this.spotifyService.current_user = null;
     this.spotifyService.history = [];

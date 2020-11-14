@@ -32,9 +32,6 @@ export class AppComponent {
       }
     )
 
-    /* Navigate automatically to the auth page */
-    //this.gotoAuthentication();
-
   }
 
   spotifyLogin() {
@@ -48,7 +45,6 @@ export class AppComponent {
 
   /* logout current user */
   logout() {
-    // Parse logout user code goes here
     console.log("logging out ", this.spotifyService.user);
     this.spotifyService.current_user = null;
     this.spotifyService.history = [];

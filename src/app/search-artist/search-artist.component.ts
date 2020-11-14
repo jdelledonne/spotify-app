@@ -18,7 +18,7 @@ export class SearchArtistComponent implements OnInit {
   artists = [];  
 
   /* Initialize dynamic function variables */
-  us_top_50     = null;
+  us_top_50     = null; 
   usTop         = null; 
   globalTop     = null; 
   globalViral   = null; 
@@ -32,7 +32,6 @@ export class SearchArtistComponent implements OnInit {
   }
 
   onSearchArtist() {
-    
   }
 
   getPopData() {
