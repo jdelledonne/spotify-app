@@ -18,9 +18,9 @@ Popular Playlists: Displays 12 popular playlists from Spotify.  Categories inclu
 
 Search Artists: Can search Spotify artists. Search results are displayed with their top tracks.  A history of all searches will be displayed below the search bar. 
 
-Playlist Hub: Can create a new playlist with the option to publish it to a "playlist hub." The hub allows other users to see your published playlists, along with the abliity to like, dislike, and comment on playlists. 
+Playlist Hub (Joe final feature): Can create a new playlist with the option to publish it to a "playlist hub." The hub allows other users to see your published playlists, along with the abliity to like, dislike, and comment on playlists. 
 
-Playlist Creator: Search Spotify by either Song or Artist. Can iterate through search results, with the option to add it to a playlist.  Songs that were added to the playlist are all displayed, and there is an option to create the playlist at the end. 
+Playlist Creator (Jack final feature): Search Spotify by either Song or Artist. Can iterate through search results, with the option to add it to a playlist.  Songs that were added to the playlist are all displayed, and there is an option to create the playlist at the end. 
 
 Note that in both Playlist features, the created playlists will actually be added to the linked Spotify account (there might be a slight delay in the creation of the playlist). 
 
