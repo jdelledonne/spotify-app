@@ -2,9 +2,8 @@
 
 ## Install and Usage
 To run this code, two npm installs are needed: 
-`npm install --save-dev @angular-devkit/build-angular`
-
-`npm install spotify-web-api-node --save`
+- `npm install --save-dev @angular-devkit/build-angular`
+- `npm install spotify-web-api-node --save`
 
 Next, run `ng serve` while in the spotify-app folder.  Once the project has compiled, navigate to `http://localhost:4200`. 
 
