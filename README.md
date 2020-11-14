@@ -1,4 +1,4 @@
-# Spotify Helper: Feature 5, version 0.4.0
+# Spotify Helper: Final Features, version 0.5.0
 
 ## Install and Usage
 To run this code, two npm installs are needed: 
